@@ -1,7 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+sad:
+  name: sad
 
-two:
-  name: MyString
+happy:
+  name: happy
+
+hyper:
+  name: hyper
+
+sleepy:
+  name: sleepy
+
+grumpy:
+  name: grumpy

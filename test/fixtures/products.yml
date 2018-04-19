@@ -1,17 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  review: MyString
-  rating: 1
-  name: MyString
-  stock: 1
-  price: 1.5
-  description: MyString
+toy:
+  name: chew toy
+  stock: 18
+  price: 7.78
+  description: really cool toy
+  user: kari
 
-two:
-  review: MyString
-  rating: 1
-  name: MyString
-  stock: 1
-  price: 1.5
-  description: MyString
+food:
+  name: biscuit
+  stock: 100
+  price: 0.76
+  description: yummy biscuit
+  user: dan
