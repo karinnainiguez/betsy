@@ -6,7 +6,7 @@ one:
   name: MyString
   ccnumber: MyString
   ccexpiration: 2018-04-19
-  ccv: MyString
+  cvv: MyString
   address: MyString
   zipcode: MyString
 
@@ -16,6 +16,6 @@ two:
   name: MyString
   ccnumber: MyString
   ccexpiration: 2018-04-19
-  ccv: MyString
+  cvv: MyString
   address: MyString
   zipcode: MyString

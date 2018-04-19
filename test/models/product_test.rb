@@ -1,9 +1,35 @@
 require "test_helper"
 
 describe Product do
-  let(:product) { Product.new }
+  describe "relations" do
+    it "connects to user and user id" do
+      user = User.create!
+      product = Product.create!(user: user)
 
-  it "must be valid" do
-    value(product).must_be :valid?
+      product.user_id.must_equal user.id
+    end
+
+    it "has a list of categories" do
+      user = User.create!
+      product = Product.create!(user: user)
+      product.must_respond_to :categories
+      product.categories.each do |category|
+        category.must_be_kind_of Category
+      end
+    end
+
+    it "has a list of reviews" do
+      user = User.create!
+      product = Product.create!(user: user)
+      product.must_respond_to :reviews
+      product.reviews.each do |review|
+        review.must_be_kind_of Review
+      end
+    end
   end
+
+  describe "validations" do
+
+  end
+
 end
