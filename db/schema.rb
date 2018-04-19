@@ -10,15 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419170300) do
+ActiveRecord::Schema.define(version: 20180419172721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_cart_items_on_order_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "state"
+    t.string "email"
+    t.string "name"
+    t.string "ccnumber"
+    t.date "ccexpiration"
+    t.string "cvv"
+    t.string "address"
+    t.string "zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "cart_item_id"
+    t.index ["cart_item_id"], name: "index_orders_on_cart_item_id"
   end
 
   create_table "prducts_categories", force: :cascade do |t|
@@ -38,6 +61,8 @@ ActiveRecord::Schema.define(version: 20180419170300) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "cart_item_id"
+    t.index ["cart_item_id"], name: "index_products_on_cart_item_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
