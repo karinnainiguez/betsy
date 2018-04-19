@@ -29,6 +29,16 @@ describe Product do
   end
 
   describe "validations" do
+    it 'requires a name' do
+      name = "test name"
+      user = User.new(name: name)
+    end
+
+    it ''
+
+    it 'must belong to an existing category' do
+    end
+
 
   end
 
