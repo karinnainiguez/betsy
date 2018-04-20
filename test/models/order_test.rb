@@ -34,22 +34,22 @@ describe Order do
     end
   end
 
-  describe "relations" do
-    before do
-      @order = Order.first
-
-    end
-
-    it "connects order and cart_item"
-
-    cart_item = CartItem.first
-
-    @order.cart_item = cart_item
-
-    @order.cart_id.must_equal cart_item.id
-
-
-  end
+  # describe "relations" do
+  #   before do
+  #     @order = Order.first
+  #
+  #   end
+  #
+  #   it "connects order and cart_item"
+  #
+  #   cart_item = CartItem.first
+  #
+  #   @order.cart_items << cart_item
+  #
+  #   @order.cart_item_ids.must_include cart_item.id
+  #
+  #
+  # end
 
 
 end
