@@ -93,7 +93,6 @@ describe Product do
       @product.errors.messages.must_include :price
     end
 
-
     # it 'must belong to an existing category' do
     # end
 
