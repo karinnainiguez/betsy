@@ -18,7 +18,8 @@ describe ProductsController do
 
   describe 'new' do
     it 'creates a product associated with user' do
-    end 
+      
+    end
   end
 
   describe 'retired' do

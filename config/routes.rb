@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   resources :reviews
 
-  resources :users
+  resources :users do
+    resources :products, only: [:index, :new, :create]
+  end
 end
