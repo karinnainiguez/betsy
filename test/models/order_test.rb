@@ -11,11 +11,12 @@ describe Order do
 
         result = @order
 
-
         result.must_equal true
-
       end
 
+      it "is invalid without a unique cc number" do
+        @order
+      end
 
 
     end
