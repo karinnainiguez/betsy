@@ -16,8 +16,11 @@ describe Review do
     end
 
     it "cannot be created with invalid data" do
-      review = Review.new(product: @product, rating: 4)
+      review = Review.new(product: @product, rating: 0)
 
+      result = review.valid?
+
+      result.must_equal false
 
     end
 
