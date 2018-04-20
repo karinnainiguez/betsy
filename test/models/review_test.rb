@@ -2,8 +2,8 @@ require "test_helper"
 
 describe Review do
   before do
-    user = User.create!
-    @product = Product.create!(user: user)
+    user = User.first
+    @product = Product.create!(user: user, price: 1.30, stock: 10, name: "test product")
   end
 
   describe "validations" do
