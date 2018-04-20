@@ -86,6 +86,14 @@ describe Product do
       @product.errors.messages.must_include :price
     end
 
+    it 'is invalid if price is not a number' do
+      @product.price = "hello"
+      result = @product.valid?
+      result.must_equal false
+      @product.errors.messages.must_include :price
+    end
+
+
     # it 'must belong to an existing category' do
     # end
 
