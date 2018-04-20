@@ -34,12 +34,12 @@ describe Product do
   end
 
   describe "validations" do
-      before do
+    before do
       @user = User.first
       @category = Category.first
 
-      @product = Product.new(user: @user, name: "test product", price: 12.99, stock: 5)
-      end
+      @product = Product.new(user: @user, name: "test product", price: 12.99, stock: 5, product_status:nil)
+    end
 
 
     it 'can be created with all valid fields' do
@@ -129,5 +129,14 @@ describe Product do
       result = dup_product.valid?
       result.must_equal true
     end
+
+    it 'is valid with product-status' do
+      @product.product_status = 'retired'
+
+      a = @product.valid?
+
+      a.must_equal true
+    end
+
   end
 end
