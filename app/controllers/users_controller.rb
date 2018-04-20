@@ -23,6 +23,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if @user.deactivate && @user.destroy
+      flash[:success] = "User deactivated from our site"
+      redirect_to root_path
+
+    else
+      flash[:failure] = "Unable to remove user"
+      render :index, status: :bad_request
+    end
+
 
   end
 
