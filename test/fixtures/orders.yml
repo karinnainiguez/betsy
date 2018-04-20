@@ -1,21 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  state: MyString
-  email: MyString
-  name: MyString
-  ccnumber: MyString
+  state:  pending 
+  email:  check1@check.com
+  name:  Alastair
+  ccnumber:  22283908
   ccexpiration: 2018-04-19
-  cvv: MyString
-  address: MyString
-  zipcode: MyString
+  cvv:  v0v
+  address:  555 12th Ave E
+  zipcode:  99999
 
 two:
-  state: MyString
-  email: MyString
-  name: MyString
-  ccnumber: MyString
+  state:  complete
+  email:  test2@test.com
+  name:  Tresande
+  ccnumber:  9998883334444
   ccexpiration: 2018-04-19
-  cvv: MyString
-  address: MyString
-  zipcode: MyString
+  cvv:  0v0
+  address:  666 thes place
+  zipcode:  88888
