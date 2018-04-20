@@ -1,9 +1,22 @@
 require "test_helper"
-
 describe Order do
-  let(:order) { Order.new }
 
-  it "must be valid" do
-    value(order).must_be :valid?
+  describe "validations" do
+    before do
+
+      end
+
+      it "can be created with all required fields" do
+        @order = Order.new()
+
+        result = @order
+
+
+        result.must_equal true
+
+      end
+
+
+
+    end
   end
-end
