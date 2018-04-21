@@ -17,3 +17,26 @@
  *= require foundation_and_overrides
 
  */
+
+
+body {
+  background-color: lightgrey;
+  color: black;
+}
+
+nav {
+  background-color: black;
+  color: lightgrey;
+  padding: 5vh 3vw;
+  font-size: 2em;
+}
+
+nav li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+nav li a {
+  color: lightgrey;
+  font-weight: bold;
+}
