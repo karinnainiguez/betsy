@@ -10,10 +10,11 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
-    if product.save
+    @product = Product.new(product_params)
+    if @product.save
       redirect_to products_path
     else
+      binding.pry
       render :new, :status => :bad_request
     end
   end
@@ -44,7 +45,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    return params.require(:product).permit(:name, :price, :stock, :product_status)
+    return params.require(:product).permit(:name, :price, :stock, :product_status, :user_id)
   end
 
   def find_product
