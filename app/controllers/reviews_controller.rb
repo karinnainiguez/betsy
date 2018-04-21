@@ -12,8 +12,9 @@ class ReviewsController < ApplicationController
       else
         render :new
       end
+  end
 
-  def destroy    
+  def destroy
   end
 
   private
