@@ -61,24 +61,24 @@ describe ProductsController do
       a.id.must_equal @product_data[:id]
     end
 
-    # it "won't add an invalid product" do
-    #   # Arrange
-    #
-    #   old_product_count = Product.count
-    #
-    #   # Assumptions
-    #   product = Product.new(@product_data)
-    #
-    #   product.user_id = nil
-    #
-    #   product.reload
-    #   # Act
-    #   post products_path, params: { product: product }
-    #
-    #   # Assert
-    #   assert_raises(ActiveRecord::RecordNotFound)
-    #   Product.count.must_equal old_product_count
-    # end
+    it "won't add an invalid product" do
+      # Arrange
+
+      old_product_count = Product.count
+
+      @product_data1 = {
+        name: "test-name",
+        price: 11,
+        stock: 4,
+        product_status: nil,
+        user_id: User.first.id
+      }
+      # Assumptions
+      product = Product.new(@product_data1)
+
+      # Assert
+      Product.count.must_equal old_product_count
+    end
 
   end
 

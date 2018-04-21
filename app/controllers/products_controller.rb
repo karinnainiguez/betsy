@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_path
     else
-      binding.pry
+      flash[:failure] = "failed to save"
       render :new, :status => :bad_request
     end
   end
