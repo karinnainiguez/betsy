@@ -84,7 +84,41 @@ describe CategoriesController do
   end
 
   describe 'destroy' do
+    it 'can destroy an empty category' do
+      category_id = Category.first.id
+      old_count = Category.count
 
+      delete category_path(category_id)
+
+      must_respond_with :redirect
+      must_redirect_to categories_path
+
+      Category.count.must_equal old_count - 1
+      Category.find_by(id: category_id).must_be_nil
+    end
+
+    it "can't destroy a category with products" do
+      old_count = Category.count
+      category = Category.first
+
+      category.products << products(:toy)
+
+      delete category_path(category.id)
+
+      must_redirect_to categories_path
+
+      Category.count.must_equal old_count
+      Category.find_by(id: category.id).must_equal category
+    end
+
+    it 'sends not_found when the book D.N.E' do
+      old_count = Category.count
+      category_id = Category.last.id + 1
+
+      get category_path(category_id)
+
+      must_respond_with :not_found
+      Category.count.must_equal old_count
+    end
   end
-
 end

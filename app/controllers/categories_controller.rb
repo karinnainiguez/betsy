@@ -1,14 +1,11 @@
 class CategoriesController < ApplicationController
+before_action :find_category, only: [:show, :destroy]
 
   def index
     @categories = Category.select_with_products
   end
 
-  def show
-    @category = Category.find_by(id: params[:id])
-
-    head :not_found unless @category
-  end
+  def show; end
 
   def new
     @category = Category.new()
@@ -30,19 +27,23 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+
     if @category.products.count > 0
       flash.now[:failure] = "Category contains active products, deletion failed."
-
     else
       @category.destroy
       flash[:success] = "Category deleted successfully"
     end
 
     redirect_to categories_path
-
   end
 
 private
+  def find_category
+    @category = Category.find_by(id: params[:id])
+
+    head :not_found unless @category
+  end
 
   def category_params
     params.require(:category).permit(:name)
