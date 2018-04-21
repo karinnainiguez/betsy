@@ -17,6 +17,15 @@ describe ProductsController do
   end
 
   describe 'new' do
+    before do
+      @product_data = {
+        name: "test-name",
+        price: 11,
+        stock: 4,
+        product_status: nil,
+        user_id: User.first.id
+      }
+    end
     it 'responds with success' do
       get new_product_path
       must_respond_with :success
@@ -30,32 +39,138 @@ describe ProductsController do
 
     end
 
+
+
+    it 'can add a product' do
+      # Arrange
+
+      old_product_count = Product.count
+
+      # Assumptions
+      Product.new(@product_data).must_be :valid?
+
+      # Act
+      post products_path, params: { product: @product_data }
+
+      #Assert
+      must_respond_with :redirect
+      must_redirect_to products_path
+
+      Product.count.must_equal old_product_count + 1
+      Product.last.id.must_equal @product_data[:id]
+    end
+
+    it "won't add an invalid product" do
+      # Arrange
+
+      old_product_count = Product.count
+
+      # Assumptions
+      product = Product.new(@product_data)
+
+      product.user_id = nil
+
+      product.reload
+      # Act
+      post products_path, params: { product: product }
+
+      # Assert
+      must_respond_with :bad_request
+      Product.count.must_equal old_product_count
+    end
+
   end
 
-  it 'can add a product' do
-    # Arrange
-    product_data = {
-      name: "test-name",
-      price: 11,
-      stock: 4,
-      product_status: nil,
-      user_id: User.first.id
-    }
-    old_product_count = Product.count
+  describe 'show' do
+    it 'sends success if the product exists' do
+      get product_path(Product.first)
+      must_respond_with :success
+    end
 
-    # Assumptions
-    Product.new(product_data).must_be :valid?
+    it 'sends not_found if the book D.N.E.' do
+      # Get an invalid book ID somehow
+      # more than one way to do this
+      product_id = Product.last.id + 1
 
-    # Act
-    post products_path, params: { product: product_data }
+      get product_path(product_id)
 
-    #Assert
-    must_respond_with :redirect
-    must_redirect_to products_path
-
-    Product.count.must_equal old_product_count + 1
-    Product.last.id.must_equal product_data[:id]
+      must_respond_with :not_found
+    end
   end
+
+  describe 'edit' do
+  it 'sends success if the product exists' do
+    get edit_product_path(Product.first)
+    must_respond_with :success
+  end
+
+  it 'sends not_found if the product D.N.E.' do
+    # Get an invalid book ID somehow
+    # more than one way to do this
+    product_id = Product.last.id + 1
+
+    get edit_product_path(product_id)
+
+    must_respond_with :not_found
+  end
+end
+
+describe 'update' do
+    it 'updates an existing product with valid data' do
+      # Arrange
+      product = Product.first
+      product_data = product.attributes
+      product_data[:stock] = 3
+      product_data[:stock] = 2
+
+      # Assumptions
+      product.assign_attributes(product_data)
+      product.must_be :valid?
+
+      # Act
+      patch product_path(product), params: { product: product_data }
+
+      # Assert
+      must_redirect_to product_path(product)
+      # Need to read the actual value from the
+      # DB, not from our local variable
+      # Book.first.title.must_equal book_data[:title]
+      product.reload
+      product.stock.must_equal product_data[:stock]
+    end
+
+    it 'sends bad_request for invalid data' do
+      # Arrange
+      product = Product.first
+      product_data = product.attributes
+      product_data[:name] = ""
+
+      # Assumptions
+      product.assign_attributes(product_data)
+      product.wont_be :valid?
+
+      # Act
+      patch product_path(product), params: { product: product_data }
+
+      # Assert
+      must_respond_with :bad_request
+
+      # Need to read the actual value from the
+      # DB, not from our local variable
+      # Book.first.title.must_equal book_data[:title]
+      product.reload
+      product.name.wont_equal product_data[:name]
+    end
+
+    it 'sends not_found for a product that D.N.E.' do
+      product_id = Product.last.id + 1
+
+      patch product_path(product_id)
+
+      must_respond_with :not_found
+    end
+  end
+
 
   describe 'retired' do
 
