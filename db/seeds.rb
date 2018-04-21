@@ -6,6 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
+categories_failures = []
+
+CATEGORIES_FILE = Rails.root.join('db','seed_data', 'categories.csv')
+CSV.foreach(CATEGORIES_FILE, :headers => true) do |row|
+  category = Category.new
+  category.name = row['name']
+
+  successful = category.save
+  if !successful
+    categories_failures << category
+    puts "Failed to save categories: #{category.inspect}"
+  else
+    puts "Created categories: #{category.inspect}"
+  end
+
+end
+
+puts "Added #{Category.count} categories records"
+puts "#{categories_failures.length} categories failed to save"
+
 
 product_failures = []
 
