@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   resources :products, except: :destroy do
     resources :reviews, only: [:create]
-
   end
-  post 'products/:id/retire', to: 'products#retire', as: 'retire'
   
+  post 'products/:id/retire', to: 'products#retire', as: 'retire'
+
+
   resources :categories
 
   resources :orders
