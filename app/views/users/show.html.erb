@@ -1,0 +1,16 @@
+<h3>User: <%= @user.name %></h3>
+
+<section class="productlist">
+  <% if @available.count > 0 %>
+    <h4>Available Products</h4>
+    <ul>
+    <% @available.each do |p| %>
+    <li>Name: <%= p.name %></li>
+    <li>Price: <%= p.price %></li>
+    <li>Description: <%= p.description %></li>
+    <li>Items Available: <%= p.stock %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+</section>
