@@ -51,3 +51,25 @@ end
 
 puts "Added #{Product.count} product records"
 puts "#{product_failures.length} products failed to save"
+
+review_failures = []
+Product.all.each do |product|
+  5.times do
+    review = Review.new(
+      rating: rand(1..5),
+      text: "This was just ok",
+      product: product
+    )
+    successful = review.save
+    if !successful
+      review_failures << review
+      puts "Failed to save review: #{review.inspect}"
+    else
+      puts "Created review: #{review.inspect}"
+    end
+
+  end
+
+end
+puts "Added #{Review.count} review records"
+puts "#{review_failures.length} reviews failed to save"
