@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   def deactivate
     user = User.find_by(name: "Previous User")
-    User.create!(name: "Previous User" unless user
+    User.create!(name: "Previous User") unless user
     self.products.each do |p|
       p.product_status = "Retired"
       return false unless p.save

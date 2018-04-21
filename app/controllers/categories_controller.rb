@@ -6,7 +6,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by(id: params[:id])
-    @products = @category.products
+
+    head :not_found unless @category
   end
 
   def new

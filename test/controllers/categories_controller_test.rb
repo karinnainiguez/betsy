@@ -25,7 +25,20 @@ describe CategoriesController do
   end
 
   describe 'show' do
+    it 'sends success if the categories exists' do
+      get category_path(Category.first)
+      must_respond_with :success
+    end
 
+    it 'sends not_found if the categories D.N.E.' do
+      # Get an invalid book ID somehow
+      # more than one way to do this
+      category_id = Category.last.id + 1
+
+      get category_path(category_id)
+
+      must_respond_with :not_found
+    end
   end
 
   describe 'new' do
