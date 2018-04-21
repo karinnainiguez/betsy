@@ -61,14 +61,47 @@ describe UsersController do
   end
 
   describe "create" do
+    it "can add a valid user" do
+
+    end
+
+    it "won't add an invalid user" do
+
+    end
 
   end
 
   describe "update" do
+    it "updates an existing user with valid data" do
+
+    end
+
+    it "sends bad_request for invalid data" do
+
+    end
+
+    it "sends not_found for a bbook that doesnt exist" do
+
+    end
 
   end
 
   describe "destroy" do
+    it "destroys a real user" do
+
+    end
+
+    it "sends not_found when the user doesnt exist" do
+      user_id = User.last.id
+      old_user_count = User.count
+
+      delete user_path(user_id)
+
+      must_respond_with :not_found
+      User.count.must_equal old_user_count
+
+
+    end
 
   end
 end
