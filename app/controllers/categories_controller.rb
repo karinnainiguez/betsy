@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new(product_id: params[:product_id])
+    @category = Category.new()
   end
 
   def create
@@ -30,7 +30,15 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    if @category.products.count > 0
+      flash.now[:failure] = "Category contains active products, deletion failed."
 
+    else
+      @category.destroy
+      flash[:success] = "Category deleted successfully"
+    end
+
+    redirect_to categories_path
 
   end
 

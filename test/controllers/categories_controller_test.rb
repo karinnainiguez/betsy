@@ -42,10 +42,45 @@ describe CategoriesController do
   end
 
   describe 'new' do
-
+    it 'responds with success' do
+      get new_category_path
+      must_respond_with :success
+    end
   end
 
   describe 'create' do
+
+    it 'can create a valid category' do
+      cat_params = {
+        name: "test category"
+      }
+      old_count = Category.count
+
+      Category.new(cat_params).must_be :valid?
+
+      post categories_path, params: {category: cat_params}
+      must_respond_with :redirect
+      must_redirect_to categories_path
+
+      Category.count.must_equal old_count + 1
+      Category.last.name.must_equal cat_params[:name]
+    end
+
+    it "won't create an invalid category" do
+      cat_data = {
+        name: Category.first.name
+      }
+      old_count = Category.count
+
+      Category.new(cat_data).wont_be :valid?
+
+      # Act
+      post categories_path, params: { category: cat_data }
+
+      # Assert
+      must_respond_with :bad_request
+      Category.count.must_equal old_count
+    end
   end
 
   describe 'destroy' do
