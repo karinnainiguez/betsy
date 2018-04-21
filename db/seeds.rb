@@ -26,6 +26,28 @@ end
 puts "Added #{Category.count} categories records"
 puts "#{categories_failures.length} categories failed to save"
 
+users_failures = []
+
+USERS_FILE = Rails.root.join('db','seed_data', 'users.csv')
+CSV.foreach(USERS_FILE, :headers => true) do |row|
+  user = User.new
+  user.name = row['name']
+  user.email = row['email']
+  user.uid = row['uid']
+  user.provider = row['provider']
+
+  successful = user.save
+  if !successful
+    users_failures << user
+    puts "Failed to save users: #{user.inspect}"
+  else
+    puts "Created users: #{user.inspect}"
+  end
+end
+
+puts "Added #{Category.count} categories records"
+puts "#{categories_failures.length} categories failed to save"
+
 
 product_failures = []
 
