@@ -7,13 +7,14 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params, product: find_product)
 
-        if @review.save
-          redirect_to product_path
-        else
-          render :new
-        end
-  end
+      if @review.save
+        redirect_to product_path
+      else
+        render :new
+      end
 
+  def destroy    
+  end
 
   private
 
