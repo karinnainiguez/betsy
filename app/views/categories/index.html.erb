@@ -2,7 +2,7 @@
 
 <ul>
 <% @categories.each do |cat| %>
-  <section class="cat">
+  <section class="category">
   <li>
     <strong><%= link_to(cat.name, category_path(cat)) %></strong>
     <p><%= cat.products.count %> Products</p>

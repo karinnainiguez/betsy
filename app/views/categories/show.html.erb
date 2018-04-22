@@ -1,1 +1,11 @@
-<h2>Category Show Page<%= @category.name %></h2>
+<h2>Category: <%= @category.name %></h2>
+
+<ul>
+<% @category.products.each do |prod| %>
+  <section class="products">
+  <li>
+    <strong><%= link_to(prod.name, product_path(prod)) %></strong>
+  </li>
+</section>
+<% end %>
+</ul>
