@@ -12,8 +12,25 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li><%= link_to("pEtsy fEels", root_path, id: "logo") %></li>
+          <li><%= link_to("By Seller", users_path) %></li>
+          <li><%= link_to("By Category", categories_path) %></li>
+          <li>Login</li>
+          <li>My Cart</li>
+        </ul>
+      </nav>
+    </header>
 
+    <main>
     <%= yield %>
+    </main>
+
+    <footer>
+      <h6>&copy; 2018 pEtsy fEels</h6>
+    </footer>
 
   </body>
 </html>

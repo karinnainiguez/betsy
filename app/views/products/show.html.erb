@@ -1,0 +1,13 @@
+<h2>Details for Product</h2>
+<p>Name <%= @product.name %></p>
+<p>Published: <%= @product.price %></p>
+<p>Synopsis: <%= @product.stock %></p>
+<%= link_to "Edit this Product", edit_product_path(@product) %>
+<p>Categories:</p>
+<ul>
+  <% @product.categories.each do |category| %>
+    <li>
+      <%= category.name %>
+    </li>
+  <% end %>
+</ul>

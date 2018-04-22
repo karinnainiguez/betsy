@@ -82,4 +82,38 @@ describe User do
     end
   end
 
+  describe "#deactivate" do
+    before do
+      @user = User.first
+      @product = Product.create(
+        name: "test product",
+        stock: 3,
+        price: 4.56,
+        description: "test description",
+        user: @user
+      )
+
+    end
+    it "returns true if user deactivated" do
+      @user.products.count.wont_equal 0
+
+      result = @user.deactivate
+      result.must_equal true
+    end
+
+    it "reassigns products if user had any" do
+      @user.products.count.wont_equal 0
+
+      result = @user.deactivate
+      result.must_equal true
+
+      @user.reload
+      @product.reload
+
+      @user.products.count.must_equal 0
+      @product.user.wont_equal @user
+    end
+
+  end
+
 end
