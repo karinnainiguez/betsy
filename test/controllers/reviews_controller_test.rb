@@ -1,12 +1,7 @@
 require "test_helper"
 
 describe ReviewsController do
-  # describe "new" do
-  #   it "succeeds" do
-  #     post product_reviews_path(Product.first)
-  #     must_respond_with :success
-  #   end
-  # end
+
 
   describe "create" do
     it "creates a review with valid data for a real product" do

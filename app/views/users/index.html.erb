@@ -1,0 +1,12 @@
+<h3>Shop by seller!</h3>
+
+<% @users.each do |user| %>
+<section class="user">
+  <ul>
+    <li>Name: <%= link_to(user.name, user_path(user)) %></li>
+    <li>Email: <%= user.email %></li>
+    <li>Products Available: <%= user.products.count %></li>
+  </ul>
+</section>
+
+<% end %>
