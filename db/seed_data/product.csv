@@ -1,4 +1,4 @@
-name,stock,price,description,product_status,user_id
+name,stock,price,description,product_status,user_id,category
 Cat Happy,,,Buy some Cat Happy today for your pet!  You know they need it lately,,
 Cat Scared,,,Buy some Cat Scared today for your pet!  You know they need it lately,,
 Cat Angry,,,Buy some Cat Angry today for your pet!  You know they need it lately,,

@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
+
 categories_failures = []
 
 CATEGORIES_FILE = Rails.root.join('db','seed_data', 'categories.csv')
@@ -74,24 +75,10 @@ end
 puts "Added #{Product.count} product records"
 puts "#{product_failures.length} products failed to save"
 
-review_failures = []
-Product.all.each do |product|
-  5.times do
-    review = Review.new(
-      rating: rand(1..5),
-      text: "This was just ok",
-      product: product
-    )
-    successful = review.save
-    if !successful
-      review_failures << review
-      puts "Failed to save review: #{review.inspect}"
-    else
-      puts "Created review: #{review.inspect}"
-    end
+#adds categories to products
+100.times do
+  category = Category.all.sample
+  prod = Product.all.sample
 
-  end
-
+  prod.categories << category
 end
-puts "Added #{Review.count} review records"
-puts "#{review_failures.length} reviews failed to save"
