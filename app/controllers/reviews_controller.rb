@@ -5,7 +5,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params, product: find_product)
+    @review = Review.new(review_params)
+    @review.product = find_product
 
         if @review.save
           redirect_to product_path
@@ -22,7 +23,7 @@ class ReviewsController < ApplicationController
     end
 
     def find_product
-      @product = Product.find_by(id: params[:id])
+      @product = Product.find_by(id: params[:product_id])
       head :not_found unless @product
     end
 end
