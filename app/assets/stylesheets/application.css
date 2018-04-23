@@ -30,7 +30,28 @@ body {
   font-size: 1.5em;
 }
 
+.top-bar {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+}
+
 .top-bar a, .top-bar ul li {
   background-color: black;
   color: lightgrey;
+}
+
+.top-bar-left a {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.top-bar-right li {
+  padding: 2vw;
 }
