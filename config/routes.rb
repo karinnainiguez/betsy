@@ -4,13 +4,10 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
-
   resources :products, except: :destroy do
     resources :reviews, only: [:create, :new]
+    post '/retire', to: 'products#retire', as: 'retire'
   end
-
-  post 'products/:id/retire', to: 'products#retire', as: 'retire'
-
 
   resources :categories
 

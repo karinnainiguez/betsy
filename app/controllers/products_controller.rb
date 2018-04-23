@@ -37,14 +37,14 @@ class ProductsController < ApplicationController
   end
 
   def retire
-    product = Product.find(params[:id])
+    product = Product.find(params[:product_id])
     product.product_status = 'retired'
 
     if product.save
-      redirect_to products_path
+      redirect_back fallback_location: root_path
     else
       flash[:failure]="Unable to delete the product"
-      redirect_to products_path
+      redirect_back fallback_location: root_path
     end
   end
 

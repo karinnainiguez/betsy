@@ -1,16 +1,42 @@
-<h3>User: <%= @user.name %></h3>
+<h3>Merchant: <%= @user.name %></h3>
+<% if session[:user_id] == @user.id %>
+  <%= link_to "Edit Info", edit_user_path(@user) %>
+  <%= link_to "Delete Account", user_path, method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= link_to "View All Orders", orders_path %>
+<% end %>
 
-<section class="productlist">
-  <% if @available.count > 0 %>
-    <h4>Available Products</h4>
+<p>Info:</p>
+<p>Number of Orders: <%= @user.products.count %></p>
+<%= mail_to @user.email do %>
+  <strong>E-mail Merchant</strong>
+<% end %>
+
+<% if session[:user_id] == @user.id %>
+<%= link_to "Create New Product", new_user_product_path(@user) %>
+<%= link_to "Create New Category", new_category_path %>
+<% end %>
+
+<section class="all-products">
+  <% prod_type = {
+      available: @available,
+      soldout: @soldout,
+      retired: @retired
+    }%>
+  <% prod_type.each do |type, collection| %>
+
+    <h4><%= type.capitalize %> Products</h4>
     <ul>
-    <% @available.each do |p| %>
-    <li>Name: <%= p.name %></li>
-    <li>Price: <%= p.price %></li>
-    <li>Description: <%= p.description %></li>
-    <li>Items Available: <%= p.stock %></li>
-    <% end %>
+      <% collection.each do |product| %>
+        <li>Name: <%= product.name %></li>
+        <li>Price: <%= product.price %></li>
+        <li>Description: <%= product.description %></li>
+        <li>Items Available: <%= product.stock %></li>
+
+        <% if session[:user_id] == @user.id %>
+        <li><%= link_to "Edit", edit_product_path(product) %></li>
+        <li><%= link_to "Discontinue", product_retire_path(product), method: :post, data: { confirm: "Are you sure?" } %></li>
+        <% end %>
+      <% end %>
     </ul>
   <% end %>
-
 </section>
