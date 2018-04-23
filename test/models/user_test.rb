@@ -114,6 +114,14 @@ describe User do
       @product.user.wont_equal @user
     end
 
+    it "cannot be called if user doesnt exist" do
+      user_id = User.last.id + 1
+      proc {
+        User.find_by(id: user_id).deactivate
+      }.must_raise
+
+    end
+
   end
 
 end
