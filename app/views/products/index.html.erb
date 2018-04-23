@@ -6,13 +6,19 @@
 <% @products.each do |product| %>
   <li>
     <strong><%= link_to(product.name, product_path(product)) %></strong>
-
+  </li>
+  <% if session[:user_id] == product.user_id %>
+  <ul>
+    <li>
+      <%= link_to "Edit", edit_product_path(product) %>
+    </li>
+    <li>
+      <%= link_to("Retire", product_path(product.id), method: :retire, data: { confirm: "Are you sure you want to delete Product #{ product.name }?" }) %>
+    </li>
+  </ul>
+  <% end %>
 
     <!-- <a href="/books/#{book.id}">Go to it now!</a> -->
-
-    <%= link_to("Edit", edit_product_path(product)) %>
-    <%= link_to("Retire", product_path(product.id), method: :retire, data: { confirm: "Are you sure you want to delete Product #{ product.name }?" }) %>
-  </li>
 <% end %>
 </ul>
 

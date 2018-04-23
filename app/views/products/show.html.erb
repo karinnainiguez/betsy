@@ -3,7 +3,16 @@
 <p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
 <p>Price: <%= @product.price %></p>
 <p>Stock: <%= @product.stock %></p>
-<%= link_to "Edit this Product", edit_product_path(@product) %>
+<% if session[:user_id] == @product.user_id %>
+<ul>
+  <li>
+    <%= link_to "Edit this Product", edit_product_path(@product) %>
+  </li>
+  <li>
+    <%= link_to("Retire", product_path(product.id), method: :retire, data: { confirm: "Are you sure you want to delete Product #{ product.name }?" }) %>
+  </li>
+</ul>
+<% end %>
 <p>Categories:</p>
 <ul>
   <% @product.categories.each do |category| %>

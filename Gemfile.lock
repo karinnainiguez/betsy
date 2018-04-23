@@ -222,15 +222,10 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-<<<<<<< HEAD
-    uglifier (4.1.9)
-      execjs (>= 0.3.0, < 3)
-    web-console (3.6.0)
-=======
+
     uglifier (4.1.10)
       execjs (>= 0.3.0, < 3)
     web-console (3.6.1)
->>>>>>> a4ab5e0f823a218a90d8a372e5fb436ec3df8396
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
