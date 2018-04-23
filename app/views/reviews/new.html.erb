@@ -10,7 +10,7 @@
     <% end %>
   </ul>
   <% end %>
-  <%= form_for @review do |f| %>
+  <%= form_for @review, url: product_reviews_path(@product.id) do |f| %>
 
     <%= f.label :text %>
     <%= f.text_field :text %>
