@@ -1,1 +1,12 @@
-<h2>Category Index Page</h2>
+<h2>Shop by Category!</h2>
+
+<ul>
+<% @categories.each do |cat| %>
+  <section class="category">
+  <li>
+    <strong><%= link_to(cat.name, category_path(cat)) %></strong>
+    <p><%= cat.products.count %> Products</p>
+  </li>
+</section>
+<% end %>
+</ul>

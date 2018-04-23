@@ -24,19 +24,34 @@ body {
   color: black;
 }
 
-nav {
+.top-bar, footer{
   background-color: black;
   color: lightgrey;
-  padding: 5vh 3vw;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
-nav li {
-  list-style-type: none;
-  display: inline-block;
+.top-bar {
+  position: fixed;
+  top: 0;
+  width: 100vw;
 }
 
-nav li a {
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+}
+
+.top-bar a, .top-bar ul li {
+  background-color: black;
   color: lightgrey;
+}
+
+.top-bar-left a {
+  font-size: 1.5em;
   font-weight: bold;
+}
+
+.top-bar-right li {
+  padding: 2vw;
 }
