@@ -1,16 +1,19 @@
 class ReviewsController < ApplicationController
-
+  before_action :find_product, only: [:create, :new]
   def new
     @review = Review.new
   end
 
   def create
-    @review = Review.new(review_params, product: find_product)
+    @review = Review.new(review_params)
+    @review.product = @product
 
       if @review.save
-        redirect_to product_path
+        flash[:success] = "Review added successfully"
+        redirect_to product_path(@product)
       else
-        render :new
+        flash.now[:failure] = "Please add ratind"
+        render :new, status: :bad_request
       end
   end
 
@@ -24,7 +27,8 @@ class ReviewsController < ApplicationController
     end
 
     def find_product
-      @product = Product.find_by(id: params[:id])
+      @product = Product.find_by(id: params[:product_id])
       head :not_found unless @product
+      return @product
     end
 end
