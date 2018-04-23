@@ -1,0 +1,25 @@
+<section>
+  <% if @review.errors.messages.any? %>
+  <ul>
+    <% @review .errors.messages.each do |field, problems| %>
+    <% problems.each do |problem| %>
+    <li>
+      <%= field %> <%= problem %>
+    </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= form_for @review, url: product_reviews_path(@product.id) do |f| %>
+
+    <%= f.label :text %>
+    <%= f.text_field :text %>
+
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+
+
+
+    <%= f.submit  %>
+  <% end %>
+</section>
