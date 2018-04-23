@@ -24,6 +24,10 @@ body {
   color: black;
 }
 
+main {
+  margin: 20vh;
+}
+
 .top-bar, footer{
   background-color: black;
   color: lightgrey;
