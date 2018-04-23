@@ -42,6 +42,7 @@ class ProductsController < ApplicationController
     else
       flash[:failure]="Unable to delete the product"
       redirect_to products_path
+    end
   end
 
 

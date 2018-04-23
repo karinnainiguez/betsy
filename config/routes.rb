@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :new, :create]
   end
 
-  get '/login', to: 'sessions#new', as: 'login'
-  post '/login', to: 'sessions#create'
+   get '/login', to: 'sessions#new', as: 'login'
+   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
+
+  get '/auth/:provider/callback', to: 'sessions#create'
 end
