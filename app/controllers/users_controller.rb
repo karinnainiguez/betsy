@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, except: [:index, :show]
 
   def index
     @users = User.all
@@ -11,21 +12,21 @@ class UsersController < ApplicationController
     @previous = @user.products
   end
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      flash[:success] = "User added successfully"
-      redirect_to user_path(@user)
-    else
-      flash[:failure] = "Validations Failed"
-      render :new, status: :bad_request
-    end
-  end
+  # def create
+  #   @user = User.new(user_params)
+  #
+  #   if @user.save
+  #     flash[:success] = "User added successfully"
+  #     redirect_to user_path(@user)
+  #   else
+  #     flash[:failure] = "Validations Failed"
+  #     render :new, status: :bad_request
+  #   end
+  # end
 
   def edit; end
 
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.deactivate
-      
+
       if @user.destroy
         flash[:success] = "User deactivated from our site"
         redirect_to root_path

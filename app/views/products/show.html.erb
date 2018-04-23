@@ -1,7 +1,8 @@
 <h2>Details for Product</h2>
-<p>Name <%= @product.name %></p>
-<p>Published: <%= @product.price %></p>
-<p>Synopsis: <%= @product.stock %></p>
+<p>Name: <%= @product.name %></p>
+<p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
+<p>Price: <%= @product.price %></p>
+<p>Stock: <%= @product.stock %></p>
 <%= link_to "Edit this Product", edit_product_path(@product) %>
 <p>Categories:</p>
 <ul>
