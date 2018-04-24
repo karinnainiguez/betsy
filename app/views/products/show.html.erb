@@ -5,7 +5,7 @@
 <p>Stock: <%= @product.stock %></p>
 <%= form_for @cart_item , url: product_cartitems_path(@product.id) do |f| %>
 <%= f.label :quantity %>
-<%= f.select :quantity, options_for_select(0..@product.stock) %>
+<%= f.select :quantity, options_for_select(1..@product.stock) %>
 <%= f.submit "Add to cart" %>
 <% end %>
 

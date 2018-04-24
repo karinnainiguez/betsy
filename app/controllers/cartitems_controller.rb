@@ -1,14 +1,12 @@
 class CartitemsController < ApplicationController
 
   def index
-    @cart_items = CartItem.where(order_id: session[:order_id])
+    @cart_items = Cartitem.where(order_id: session[:order_id])
   end
-
-
 
   def create
     #  get quantity from form
-    @cart_item = CartItem.new(cart_item_params)
+    @cart_item = Cartitem.new(cartitem_params)
     #  find the product from path
     @cart_item.product = Product.find(params[:product_id])
 
@@ -45,8 +43,8 @@ class CartitemsController < ApplicationController
 
   private
 
-  def cart_item_params
-    return params.require(:cart_item).permit(:quantity)
+  def cartitem_params
+    return params.require(:cartitem).permit(:quantity)
   end
 
 end
