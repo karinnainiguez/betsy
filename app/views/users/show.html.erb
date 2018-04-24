@@ -6,6 +6,7 @@
 <% end %>
 
 <p>Info:</p>
+<%= image_tag @user.image.url(:medium) %>
 <p>Number of Orders: <%= @user.products.count %></p>
 <%= mail_to @user.email do %>
   <strong>E-mail Merchant</strong>
