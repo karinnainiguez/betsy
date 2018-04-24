@@ -9,6 +9,7 @@ class CartItemsController < ApplicationController
   end
 
   def update
+    #update quantity of item
 
   end
 
