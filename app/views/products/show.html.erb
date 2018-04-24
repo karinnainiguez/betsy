@@ -3,6 +3,16 @@
 <p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
 <p>Price: <%= @product.price %></p>
 <p>Stock: <%= @product.stock %></p>
+<%= form_for @cart_item , url: product_cartitems_path(@product.id) do |f| %>
+<%=  f.label :quantity %>
+<%= f.select :quantity, options_for_select(0..@product.stock) %>
+<%=f.submit "Add to cart" %>
+<% end %>
+
+
+
+
+
 <% if session[:user_id] == @product.user_id %>
 <ul>
   <li>

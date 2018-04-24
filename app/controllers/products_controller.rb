@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
 
   def show
     @review = Review.new
+    @cart_item = CartItem.new
   end
 
   def edit;end

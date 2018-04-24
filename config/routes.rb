@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :products, except: :destroy do
     resources :reviews, only: [:create, :new]
+    resources :cartitems, only: [:create, :new]
+
     post '/retire', to: 'products#retire', as: 'retire'
   end
 
@@ -24,4 +26,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
   get '/auth/:provider/callback', to: 'sessions#create'
+
+
 end
