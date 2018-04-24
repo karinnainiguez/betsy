@@ -1,8 +1,9 @@
 <h3>Shop by seller!</h3>
-
+<section class="product-container">
 <% @users.each do |user| %>
-<section class="user">
+<section class="user product-box">
   <ul>
+    <div class="pic"></div>
     <li>Name: <%= link_to(user.name, user_path(user)) %></li>
     <li>Email: <%= user.email %></li>
     <li>Products Available: <%= user.products.count %></li>
@@ -10,3 +11,4 @@
 </section>
 
 <% end %>
+</section>
