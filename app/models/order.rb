@@ -17,4 +17,16 @@ class Order < ApplicationRecord
     end
   end
 
+  def self.filter_by(user_id)
+    items = []
+    self.all.each do |order|
+      order.cartitems.each do |item|
+        if item.product.user.id == user_id
+          items << item
+        end
+      end
+    end
+    return items 
+  end
+
 end
