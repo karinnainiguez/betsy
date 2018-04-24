@@ -2,8 +2,9 @@
 <% if session[:user_id] == @user.id %>
 <span class="button hollow"><%= link_to "Edit Info", edit_user_path(@user) %></span>
 <span class="button hollow"><%= link_to "Delete Account", user_path, method: :delete, data: { confirm: "Are you sure?" } %></span>
-<span class="button hollow"><%= link_to "View All Orders", orders_path %></span>
+<span class="button hollow"><%= link_to "Order Fufillment", orders_path %></span>
 <% end %>
+
 <div class="pic">User photo here</div>
 
 <h4><u>Merchant Info</u></h4>

@@ -1,22 +1,65 @@
+<article class="tabs">
+
+  <section id="tab1">
+    <h2><a href="#tab1">Pending Orders</a></h2>
 <table>
   <tr>
-    <th>Product Name</th>
-    <th>Order Number</th>
-    <th>Quantity</th>
-    <th>Completed</th>
+    <td>Order Number</td>
+    <td>Product Name</td>
+    <td>Subtotal Product Revenue</td>
   </tr>
+<% total_revenue = 0 %>
+<% total_orders = 0 %>
+  <% @orders.each do |cartitem| %>
 
-<% CartItem.where(order_id: @order.id).each do |item| %>
-<% @product = Product.find(item.product_id) %>
-<tr> Item <%= @product.name %></tr>
-<tr>Price <%= @product.price %></tr>
-<tr>
-  <%= form_for @cart_item do |f| %>
-     <%= f.collection_select :quantity, (0..(@product.stock)) %>
-     <%= f.submit class: "button" %>
-  <% end %>
-</tr>
-<tr></tr>
-<% end %>
+    <% if cartitem.order.state == 'pending' %>
+    <tr>
+      <td>
+        <%= link_to cartitem.order.id, order_path(cartitem.order) %>
+      </td>
+      <td>
+        <%= link_to cartitem.product.name, product_path(cartitem.product) %>
+      </td>
+      <td>
+        <%= number_to_currency(cartitem.quantity * cartitem.product.price) %>
+      </td>
 
+    <% total_revenue += cartitem.quantity * cartitem.product.price %>
+    <% total_orders += 1 %>
+    </tr>
+    <% end %>
+    <% end %>
 </table>
+<p>Total Pending Revenue: <%= number_to_currency(total_revenue) %> </p>
+<p>Total number of pending orders <%= total_orders %> </p>
+
+
+  </section>
+
+  <section id="tab2">
+    <h2><a href="#tab2">Paid Orders</a></h2>
+    <p>Total number of paid orders</p>
+    <p>Order Number links to order</p>
+    <p>Product name links to product </p>
+    <p>Total product revenue</p>
+    <p>Shipped Button</p>
+    <p>Total of all paid Revenue</p>
+  </section>
+
+  <section id="tab3">
+    <h2><a href="#tab3">Cancelled Orders</a>    <p>Total number of cancelled orders</p>
+      <p>Order Number links to order</p>
+      <p>Product name links to product </p>
+      <p>Total product revenue</p>
+      <p>Total of all cancelled Revenue</p>
+    </section>
+
+    <section id="tab4">
+      <h2><a href="#tab4">Complete Orders</a>    <p>Total number of complete orders</p>
+        <p>Order Number links to order</p>
+        <p>Product name links to product </p>
+        <p>Total product revenue</p>
+        <p>Total of all complete Revenue</p>
+      </section>
+
+    </article>

@@ -33,4 +33,5 @@ Rails.application.routes.draw do
 
   patch '/cartitems/:id', to: 'cartitems#update', as: 'update_cartitem'
 
+
 end

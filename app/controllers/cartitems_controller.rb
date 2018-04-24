@@ -3,7 +3,7 @@ class CartitemsController < ApplicationController
 
   def index
     if session[:order_id] == nil
-      order = Order.create!
+      order = Order.create!(state: 'pending')
       session[:order_id] = order.id
     end
     @cart_items = Cartitem.where(order_id: session[:order_id])
@@ -20,7 +20,7 @@ class CartitemsController < ApplicationController
     if session[:order_id]
       @cart_item.order = Order.find(session[:order_id])
     else
-      order = Order.create!
+      order = Order.create!(state: 'pending')
       @cart_item.order = order
       session[:order_id] = order.id
     end
