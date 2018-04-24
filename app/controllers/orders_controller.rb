@@ -1,13 +1,9 @@
 class OrdersController < ApplicationController
 
+  before_action :find_order, only: [:show, :edit, :update]
+
   def index
-    if session[:order_id].nil?
-      @order = Order.create
-      session[:order_id] = @order.id
-      #order index is shopping cart view
-    else
-      @order = Order.find(session[:order_id])
-    end
+
   end
 
   def show
@@ -22,17 +18,35 @@ class OrdersController < ApplicationController
 
   end
 
-  def edit
-    #put in credit card information
-    #change from pending to paid
-  end
+  def edit; end
 
   def update
+    @order.assign_attributes(order_params)
+
+    if @order.save
+      flash.now[:success] = "Your Order is on it's way!"
+      session[:order_id] = nil
+      render :show
+    else
+      flash.now[:failure] = "Sorry, could not process your order"
+      render :edit, status: :bad_request
+    end
 
   end
 
   def destroy
 
+  end
+
+  private
+
+  def find_order
+    @order = Order.find(session[:order_id])
+    head :not_found unless @order
+  end
+
+  def order_params
+    return params.require(:order).permit(:name, :email, :address, :state, :zipcode, :ccnumber, :ccexpiration, :cvv)
   end
 
 end

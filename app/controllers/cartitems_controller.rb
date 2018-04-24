@@ -2,6 +2,10 @@ class CartitemsController < ApplicationController
     before_action :find_cartitem, only: [:update, :destroy]
 
   def index
+    if session[:order_id] == nil
+      order = Order.create!
+      session[:order_id] = order.id
+    end
     @cart_items = Cartitem.where(order_id: session[:order_id])
   end
 
