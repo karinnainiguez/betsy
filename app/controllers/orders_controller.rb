@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   def update
     @order.assign_attributes(order_params)
 
-    if @order.save
+    if @order.save && @order.complete_checkout
       flash.now[:success] = "Your Order is on it's way!"
       session[:order_id] = nil
       render :show
