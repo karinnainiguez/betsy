@@ -13,7 +13,12 @@
   <tr>
     <td><%= link_to item.product.name, product_path(item.product) %></td>
     <td><%= number_to_currency(item.product.price) %></td>
-    <td><%= item.quantity %></td>
+    <td><%= form_for item, url: update_cartitem_path(item.id) do |f| %>
+
+      <%= f.select :quantity, options_for_select(1..item.product.stock, :selected => item.quantity) %>
+      <%= f.submit "Update", class: "button" %>
+      <% end %>
+    </td>
     <td><%= number_to_currency(item.quantity * item.product.price) %></td>
     <td><%= link_to "Remove", delete_cartitem_path, method: :destroy, class: "button", data: { confirm: "Are you sure you want to remove this item from your shopping cart?" } %></td>
   </tr>

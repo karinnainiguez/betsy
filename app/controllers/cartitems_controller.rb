@@ -34,7 +34,14 @@ class CartitemsController < ApplicationController
 
   def update
     #update quantity of item
-
+    @cart_item = Cartitem.find(params[:id])
+    @cart_item.assign_attributes(cartitem_params)
+    if @cart_item.save
+      redirect_to cart_path
+    else
+      flash[:failure] = "Sorry, not able to update!"
+      redirect_to cart_path
+    end
   end
 
   def destroy

@@ -31,4 +31,6 @@ Rails.application.routes.draw do
 
   delete '/cartitems/', to: 'cartitems#destroy', as: 'delete_cartitem'
 
+  patch '/cartitems/:id', to: 'cartitems#update', as: 'update_cartitem'
+
 end
