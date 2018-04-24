@@ -22,67 +22,89 @@
   <% end %>
 </ul>
 
-<section class="reviews">
+
+<article class="tabs">
+
+	<section id="tab1">
+		<h2><a href="#tab1">Product Info</a></h2>
+    <h4>Product Information</h4>
+		<p>Name: <%= @product.name %></p>
+    <p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
+    <p>Price: <%= @product.price %></p>
+    <p>Stock: <%= @product.stock %></p>
+
+    <% if session[:user_id] == @product.user_id %>
+        <%= link_to "Edit", edit_product_path(@product) %>
+        <%= link_to("Retire", product_path(@product.id), method: :retire, data: { confirm: "Are you sure you want to delete Product #{ @product.name }?" }) %>
+    <% end %></p>
+    <p>Categories:
+      <% @product.categories.each do |category| %>
+
+        <%= category.name %>,
+      <% end %>...
+    </p>
+	</section>
+
+	<section id="tab2">
+		<h2><a href="#tab2">Read Product Reviews</a></h2>
+      <h4>Product Reviews</h4>
+      <table>
+        <tr>
+          <th>User</th>
+          <th>Date</th>
+          <th>Rating</th>
+          <th>Review</th>
+        </tr>
+
+        <% @product.reviews.each do |review| %>
+        <tr>
+          <td>Anonymous</td>
+          <td><%= review.created_at %></td>
+          <td><%= review.rating %></td>
+          <td><%= review.text %></td>
+        </tr>
+        <% end %>
+      </table>
+	</section>
 
   <% if session[:user_id] != @product.user_id %>
-  <section class="new-review">
-
-    <% if @review.errors.messages.any? %>
-    <ul>
-      <% @review .errors.messages.each do |field, problems| %>
-      <% problems.each do |problem| %>
-      <li>
-        <%= field %> <%= problem %>
-      </li>
+	<section id="tab3">
+		<h2><a href="#tab3">Write New Review</a></h2>
+    <h4>Submit a New Review</4>
+      <% if @review.errors.messages.any? %>
+      <ul>
+        <% @review .errors.messages.each do |field, problems| %>
+        <% problems.each do |problem| %>
+        <li>
+          <%= field %> <%= problem %>
+        </li>
+        <% end %>
+        <% end %>
+      </ul>
       <% end %>
+
+      <h4>Rate This Product:</h4>
+
+
+      <%= form_for @review, url: product_reviews_path(@product.id) do |f| %>
+
+      <%= f.label :text %>
+      <%= f.text_field :text %>
+
+      <%= f.label :rating %>
+      <%= f.radio_button :rating, 1 %>
+      <%= label :rating, "1" %>
+      <%= f.radio_button :rating, 2 %>
+      <%= label :rating, "2" %>
+      <%= f.radio_button :rating, 3 %>
+      <%= label :rating, "3" %>
+      <%= f.radio_button :rating, 4 %>
+      <%= label :rating, "4" %>
+      <%= f.radio_button :rating, 5 %>
+      <%= label :rating, "5" %>
+
+      <%= f.submit "Review", class:"button" %>
       <% end %>
-    </ul>
-    <% end %>
-
-    <h4>Rate This Product:</h4>
-
-
-    <%= form_for @review, url: product_reviews_path(@product.id) do |f| %>
-
-    <%= f.label :text %>
-    <%= f.text_field :text %>
-
-    <%= f.label :rating %>
-    <%= f.radio_button :rating, 1 %>
-    <%= label :rating, "1" %>
-    <%= f.radio_button :rating, 2 %>
-    <%= label :rating, "2" %>
-    <%= f.radio_button :rating, 3 %>
-    <%= label :rating, "3" %>
-    <%= f.radio_button :rating, 4 %>
-    <%= label :rating, "4" %>
-    <%= f.radio_button :rating, 5 %>
-    <%= label :rating, "5" %>
-
-    <%= f.submit "Review", class:"button" %>
-    <% end %>
-  </section>
+    </section>
   <% end %>
-
-  <section class="review-list">
-    <h4>Reviews for this product: </h4>
-    <table>
-      <tr>
-        <th>User</th>
-        <th>Date</th>
-        <th>Rating</th>
-        <th>Review</th>
-      </tr>
-
-      <% @product.reviews.each do |review| %>
-      <tr>
-        <td>Anonymous</td>
-        <td><%= review.created_at %></td>
-        <td><%= review.rating %></td>
-        <td><%= review.text %></td>
-      </tr>
-      <% end %>
-    </table>
-  </section>
-
-</section>
+</article>
