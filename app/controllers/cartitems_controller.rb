@@ -64,7 +64,7 @@ class CartitemsController < ApplicationController
   private
 
   def cartitem_params
-    return params.require(:cartitem).permit(:quantity)
+    return params.require(:cartitem).permit(:quantity, :shipped)
   end
 
   def find_cartitem

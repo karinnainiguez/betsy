@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :find_order, only: [:show, :edit, :update]
 
   def index
-    @orders = Order.filter_by(session[:user_id]) 
+    @orders = Order.filter_by(session[:user_id])
   end
 
   def show
@@ -41,7 +41,10 @@ class OrdersController < ApplicationController
   private
 
   def find_order
-    @order = Order.find(session[:order_id])
+    @order = Order.find_by(id: session[:order_id])
+    if !@order
+      @order = Order.find_by(id: params[:id])
+    end
     head :not_found unless @order
   end
 

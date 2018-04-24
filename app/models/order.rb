@@ -12,6 +12,7 @@ class Order < ApplicationRecord
 
   def complete_checkout
     self.state = "paid"
+    self.save
     self.cartitems.each do |item|
       item.update_stock
     end
@@ -26,7 +27,7 @@ class Order < ApplicationRecord
         end
       end
     end
-    return items 
+    return items
   end
 
 end
