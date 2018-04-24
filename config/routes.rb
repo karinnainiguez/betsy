@@ -27,5 +27,6 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
 
+  get '/cartitems', to: 'cartitems#index', as: 'cart'
 
 end

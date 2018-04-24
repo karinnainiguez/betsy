@@ -1,4 +1,4 @@
-class CartItem < ApplicationRecord
+class Cartitem < ApplicationRecord
   belongs_to :order
   belongs_to :product
 
