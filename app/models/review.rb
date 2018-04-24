@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :product
+  has_one :user, through: :review
 
   validates :rating,
   presence: true,

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :products
+  has_many :reviews, through: :products
 
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
@@ -15,6 +16,18 @@ class User < ApplicationRecord
       return false unless p.save
     end
     return true
+  end
+
+  def average_rating
+    reviews = self.reviews
+
+    return 0 if reviews.count == 0
+
+    total = reviews.map do |rating|
+      rating.rating
+    end.sum.to_f
+
+    return total / reviews.count
 
   end
 end

@@ -23,14 +23,14 @@
       retired: @retired
     }%>
   <% prod_type.each do |type, collection| %>
-
+  <section class="product-list">
     <h4><%= type.capitalize %> Products</h4>
     <ul>
       <% collection.each do |product| %>
-        <li>Name: <%= product.name %></li>
-        <li>Price: <%= product.price %></li>
+        <li><%= link_to "#{product.name.capitalize}", product_path(product) %></li>
+        <li>Price: <%= '%.2f' % product.price %></li>
         <li>Description: <%= product.description %></li>
-        <li>Items Available: <%= product.stock %></li>
+        <li>In Stock: <%= product.stock %></li>
 
         <% if session[:user_id] == @user.id %>
         <li><%= link_to "Edit", edit_product_path(product) %></li>
@@ -39,4 +39,5 @@
       <% end %>
     </ul>
   <% end %>
+  </section>
 </section>
