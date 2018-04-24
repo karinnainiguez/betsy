@@ -1,8 +1,8 @@
 <h2>Shop by Category!</h2>
 
-<ul>
+<ul class="product-container">
 <% @categories.each do |cat| %>
-  <section class="category">
+  <section class="category product-box">
   <li>
     <strong><%= link_to(cat.name, category_path(cat)) %></strong>
     <p><%= cat.products.count %> Products</p>
