@@ -22,9 +22,19 @@
   <%= f.label :user_id %>
   <%= f.number_field :user_id %>
 
+
   <%= f.label :description %>
   <%= f.text_area :description %>
 
+
+  <div class="add category">
+    Add a category or select from the list
+    <%= f.label :category %>
+    <%= f.text_area :category_ids %>
+
+      <%= f.label :category %><br>
+      <%= f.collection_select :category_ids, Category.all, :id, :name %>
+    </div>
 
   <%= f.submit class: "button" %>
 <% end %>
