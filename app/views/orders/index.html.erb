@@ -205,7 +205,7 @@
   </section>
 
 </article>
-=======
+
 <table>
   <tr>
     <th>Product Name</th>
@@ -219,7 +219,7 @@
 <tr> Item <%= @product.name %></tr>
 <tr>Price <%= @product.price %></tr>
 <tr>
-  <%= form_for @cart_item do |f| %>
+  <%= form_for item do |f| %>
      <%= f.collection_select :quantity, (0..(@product.stock)) %>
      <%= f.submit class: "button" %>
   <% end %>
