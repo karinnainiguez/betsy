@@ -17,11 +17,6 @@
  *= require foundation_and_overrides
 
  */
-.pic {
-  width: 150px;
-  height: 150px;
-  border: solid 1px black;
-}
 
 body {
   background-color: lightgrey;
@@ -33,7 +28,7 @@ main {
 }
 
 .top-bar, footer{
-  background-color: black;
+  background-color: white;
   color: lightgrey;
   font-size: 1.5em;
 }
@@ -52,7 +47,7 @@ footer {
 }
 
 .top-bar a, .top-bar ul li {
-  background-color: black;
+  background-color: white;
   color: lightgrey;
 }
 
@@ -60,11 +55,11 @@ footer {
   font-size: 2.5em;
   font-weight: bold;
   font-family: Arnoldboecklin, fantasy;
-  margin-left: 60px;
+  padding-top: 30px;
 }
 
 .top-bar-right li {
-  padding: 2vw;
+  padding: 1vw;
 }
 
 .vertical a:hover {
