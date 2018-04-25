@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_action :find_order, only: [:show, :edit, :update]
+  before_action :find_order, only: [:index, :show, :edit, :update]
 
   def index
     @orders = Order.filter_by(session[:user_id])
