@@ -2,29 +2,15 @@
 
 <p>Here is a list of all products</p>
 
-<ul class="product-container">
+<section class="product-container">
   <% @products.each do |product| %>
-  <section class="product-box">
-    <li>
+  <div class="product-box">
       <strong><%= link_to(product.name, product_path(product)) %></strong>
-    </li>
-    <li>
       <%= image_tag product.image.url(:medium) %>
-    </li>
-    <li>
-      <% if session[:user_id] == product.user_id %>
-      <%= link_to "Edit", edit_product_path(product) %>
-    </li>
-    <li>
-      <%= link_to("Discontinue", product_retire_path(product), method: :post, data: { confirm: "Are you sure you want to discontinue this Product #{ product.name }?" }) %>
-    </li>
-  </ul>
-  <% end %>
-
-</section>
+  </div>
 <!-- <a href="/books/#{book.id}">Go to it now!</a> -->
-<% end %>
-</ul>
+  <% end %>
+</section>
 
 
 <%= link_to("Add a New Product", new_product_path, class: "important") %>
