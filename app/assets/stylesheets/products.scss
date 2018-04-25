@@ -112,6 +112,7 @@ article.tabs section h2
 	transition: all 500ms ease;
 }
 
+
 .categoryproductpage
 {
   display: flex;
@@ -122,6 +123,20 @@ article.tabs section h2
 .productshowbottombuttons{
   display: flex;
 
-  justify-content: space-around;
+  justify-content:center;
 
+}
+
+
+
+#tab-block{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr;
+  box-sizing:content-box;
+
+}
+
+#tab-block-item{
+  margin: 1em;
 }
