@@ -46,6 +46,7 @@ class UsersController < ApplicationController
     if @user.deactivate
 
       if @user.destroy
+        session[:user_id] = nil
         flash[:success] = "User deactivated from our site"
         redirect_to root_path
       else

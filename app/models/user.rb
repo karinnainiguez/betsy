@@ -33,4 +33,17 @@ class User < ApplicationRecord
     return total / reviews.count
 
   end
+
+  def avail_prod
+    self.products.select{|p| !p.product_status && p.stock > 0}
+  end
+
+  def soldout_prod
+    self.products.select{|p| !p.product_status && p.stock == 0}
+  end
+
+  def retired_prod
+    self.products.select{|p| p.product_status == 'retired'}
+  end
+  
 end
