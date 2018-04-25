@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create', as: 'auth_callback'
   get '/cartitems', to: 'cartitems#index', as: 'cart'
   delete '/cartitems/:id', to: 'cartitems#destroy', as: 'delete_cartitem'
   patch '/cartitems/:id', to: 'cartitems#update', as: 'update_cartitem'

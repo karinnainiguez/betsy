@@ -1,13 +1,13 @@
 require "test_helper"
 
-describe CartItem do
+describe Cartitem do
   before do
     @order = Order.first
     @product = Product.first
   end
   describe "validations" do
     it "can be created with all valid data" do
-      cart_item = CartItem.new(
+      cart_item = Cartitem.new(
         order: @order,
         product: @product,
         quantity: 3
@@ -20,7 +20,7 @@ describe CartItem do
     end
 
     it "cannot be created with invalid data" do
-      cart_item = CartItem.new(
+      cart_item = Cartitem.new(
         order: @order,
         product: @product,
         quantity: 0
@@ -34,7 +34,7 @@ describe CartItem do
     it "cannot be created with insufficient data" do
 
       # first case: without order
-      without_order = CartItem.new(
+      without_order = Cartitem.new(
         product: @product,
         quantity: 1
       )
@@ -45,7 +45,7 @@ describe CartItem do
 
 
       # second case: without product
-      without_product = CartItem.new(
+      without_product = Cartitem.new(
         order: @order,
         quantity: 1
       )
@@ -56,7 +56,7 @@ describe CartItem do
 
 
       # third case: without quanity
-      without_quantity = CartItem.new(
+      without_quantity = Cartitem.new(
         order: @order,
         product: @product
       )
@@ -70,7 +70,7 @@ describe CartItem do
 
   describe "relations" do
     it "connects to product and product_id" do
-      cart_item = CartItem.create!(
+      cart_item = Cartitem.create!(
         order: @order,
         product: @product,
         quantity: 1,
@@ -81,7 +81,7 @@ describe CartItem do
     end
 
     it "connects to order and order_id" do
-      cart_item = CartItem.create!(
+      cart_item = Cartitem.create!(
         order: @order,
         product: @product,
         quantity: 1,

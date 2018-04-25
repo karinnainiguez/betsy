@@ -81,17 +81,8 @@
 	<section id="tab3">
 		<h2><a href="#tab3">Write New Review</a></h2>
     <h4>Submit a New Review</4>
-      <% if @review.errors.messages.any? %>
-      <ul>
-        <% @review .errors.messages.each do |field, problems| %>
-        <% problems.each do |problem| %>
-        <li>
-          <%= field %> <%= problem %>
-        </li>
-        <% end %>
-        <% end %>
-      </ul>
-      <% end %>
+
+      <%= render partial: "layouts/errors", locals: { model: @review } %>
 
       <h4>Rate This Product:</h4>
 
