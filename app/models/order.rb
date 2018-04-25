@@ -1,14 +1,14 @@
 class Order < ApplicationRecord
   has_many :cartitems
 
-  # validates :name, presence: true
-  # validates :state, presence: true
-  # validates :email, presence: true, uniqueness: true
-  # validates :ccnumber, presence: true, uniqueness: true
-  # validates :ccexpiration, presence: true
-  # validates :cvv, presence: true
-  # validates :address, presence: true
-  # validates :zipcode, presence: true
+  validates_presence_of :name, on: :purchase
+  validates_presence_of :state, on: :purchase
+  validates_presence_of :email,  on: :purchase
+  validates_presence_of :ccnumber,  on: :purchase
+  validates_presence_of :ccexpiration, on: :purchase
+  validates_presence_of :cvv, on: :purchase
+  validates_presence_of :address, on: :purchase
+  validates_presence_of :zipcode, on: :purchase
 
   def complete_checkout
     self.state = "paid"

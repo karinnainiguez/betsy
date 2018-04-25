@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  get 'main/index'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
-  root to: 'products#index'
+  root to: 'main#index'
 
   resources :products, except: :destroy do
     resources :reviews, only: [:create, :new]
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create', as: 'auth_callback'
   get '/cartitems', to: 'cartitems#index', as: 'cart'
   delete '/cartitems/:id', to: 'cartitems#destroy', as: 'delete_cartitem'
   patch '/cartitems/:id', to: 'cartitems#update', as: 'update_cartitem'
