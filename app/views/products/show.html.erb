@@ -1,83 +1,68 @@
-<h2>Details for Product</h2>
-<p>Name: <%= @product.name %></p>
-<p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
-<p>Price: <%= @product.price %></p>
-<p>Stock: <%= @product.stock %></p>
-<%= form_for @cart_item , url: product_cartitems_path(@product.id) do |f| %>
-<%= f.label :quantity %>
-<%= f.select :quantity, options_for_select(1..@product.stock) %>
-<%= f.submit "Add to cart" %>
-<% end %>
-
-
-
-<% if session[:user_id] == @product.user_id %>
-<ul>
-  <li>
-    <%= link_to "Edit", edit_product_path(@product) %>
-  </li>
-  <li>
-    <%= link_to("Discontinue", product_retire_path(@product), method: :post, data: { confirm: "Are you sure you want to discontinue Product #{ @product.name }?" }) %>
-  </li>
-</ul>
-<% end %>
-<p>Categories:</p>
-<ul>
-  <% @product.categories.each do |category| %>
-  <li>
-    <%= link_to category.name.capitalize, category_path(category.id) %>
-  </li>
-  <% end %>
-</ul>
-
+<h2>Details for <%= @product.name %></h2>
 
 <article class="tabs">
 
-	<section id="tab1">
-		<h2><a href="#tab1">Product Info</a></h2>
+  <section id="tab1">
+    <h2><a href="#tab1">Product Info</a></h2>
     <h4>Product Information</h4>
-		<p>Name: <%= @product.name %></p>
+    <p>Name: <%= @product.name %></p>
     <p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
     <p>Price: <%= @product.price %></p>
     <p>Stock: <%= @product.stock %></p>
 
-    <% if session[:user_id] == @product.user_id %>
-        <%= link_to "Edit", edit_product_path(@product) %>
-        <%= link_to("Retire", product_path(@product.id), method: :retire, data: { confirm: "Are you sure you want to delete Product #{ @product.name }?" }) %>
-    <% end %></p>
-    <p>Categories:
+
+    <ul class = "categoryproductpage">
+      Categories:
       <% @product.categories.each do |category| %>
+      <li>
+        <%= link_to category.name.capitalize, category_path(category.id) %>
+      </li>
+      <% end %>
+    </ul>
 
-        <%= category.name %>,
-      <% end %>...
-    </p>
-	</section>
+    <%= form_for @cart_item , url: product_cartitems_path(@product.id) do |f| %>
+    <%= f.label :quantity %>
+    <%= f.select :quantity, options_for_select(1..@product.stock) %>
+    <%= f.submit "Add to cart" %>
+    <% end %>
 
-	<section id="tab2">
-		<h2><a href="#tab2">Read Product Reviews</a></h2>
-      <h4>Product Reviews</h4>
-      <table>
-        <tr>
-          <th>User</th>
-          <th>Date</th>
-          <th>Rating</th>
-          <th>Review</th>
-        </tr>
+    <% if session[:user_id] == @product.user_id %>
+    <ul class = "productshowbottombuttons">
+      <li>
+        <%= link_to "Edit", edit_product_path(@product) %>
+      </li>
+      <li>
+        <%= link_to("Discontinue", product_retire_path(@product), method: :post, data: { confirm: "Are you sure you want to discontinue Product #{ @product.name }?" }) %>
+      </li>
+    </ul>
+    <% end %>
+  </section>
 
-        <% @product.reviews.each do |review| %>
-        <tr>
-          <td>Anonymous</td>
-          <td><%= review.created_at %></td>
-          <td><%= review.rating %></td>
-          <td><%= review.text %></td>
-        </tr>
-        <% end %>
-      </table>
-	</section>
+  <section id="tab2">
+    <h2><a href="#tab2">Read Product Reviews</a></h2>
+    <h4>Product Reviews</h4>
+    <table>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Rating</th>
+        <th>Review</th>
+      </tr>
+
+      <% @product.reviews.each do |review| %>
+      <tr>
+        <td>Anonymous</td>
+        <td><%= review.created_at %></td>
+        <td><%= review.rating %></td>
+        <td><%= review.text %></td>
+      </tr>
+      <% end %>
+    </table>
+  </section>
 
   <% if session[:user_id] != @product.user_id %>
-	<section id="tab3">
-		<h2><a href="#tab3">Write New Review</a></h2>
+  <section id="tab3">
+    <h2><a href="#tab3">Write New Review</a></h2>
     <h4>Submit a New Review</4>
 
       <%= render partial: "layouts/errors", locals: { model: @review } %>
@@ -105,5 +90,5 @@
       <%= f.submit "Review", class:"button" %>
       <% end %>
     </section>
-  <% end %>
-</article>
+    <% end %>
+  </article>
