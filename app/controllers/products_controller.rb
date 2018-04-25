@@ -7,12 +7,10 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new(user_id: params[:user_id])
-
+    @product = Product.new(user_id: session[:user_id])
   end
 
   def create
-    @categories = @product.categories
     @product = Product.new(product_params)
     if @product.save
       redirect_to products_path
