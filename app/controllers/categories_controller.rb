@@ -13,6 +13,7 @@ before_action :require_login, except: [:index, :show]
   end
 
   def create
+    @products = Product.new
     @category = Category.new(category_params)
 
     if @category.save
@@ -47,6 +48,6 @@ private
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, product_ids: [])
   end
 end

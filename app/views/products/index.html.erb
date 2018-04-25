@@ -1,5 +1,7 @@
 <p>Here is a list of all products</p>
 
+<%= link_to("Add a New Product", new_product_path, class: "important") %>
+
 <section class="product-container">
   <% @products.each do |product| %>
   <div class="product-box">
