@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <article class="tabs">
 
   <section id="tab1">
@@ -204,3 +205,27 @@
   </section>
 
 </article>
+=======
+<table>
+  <tr>
+    <th>Product Name</th>
+    <th>Price per Unit</th>
+    <th>Amount</th>
+    <th>Actions</th>
+  </tr>
+
+<% Cartitem.where(order_id: @order.id).each do |item| %>
+<% @product = Product.find(item.product_id) %>
+<tr> Item <%= @product.name %></tr>
+<tr>Price <%= @product.price %></tr>
+<tr>
+  <%= form_for @cart_item do |f| %>
+     <%= f.collection_select :quantity, (0..(@product.stock)) %>
+     <%= f.submit class: "button" %>
+  <% end %>
+</tr>
+<tr></tr>
+<% end %>
+
+</table>
+>>>>>>> main_page
