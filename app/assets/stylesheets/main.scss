@@ -18,9 +18,9 @@
  font-family: fantasy;
 
  /* Apply animation to this element */
- -moz-animation: marquee 10s ease-out;
- -webkit-animation: marquee 10s ease-out;
- animation: marquee 10s ease-out;
+ -moz-animation: marquee 5s ease-out;
+ -webkit-animation: marquee 5s ease-out;
+ animation: marquee 5s ease-out;
 }
 /* Move it (define the animation) */
 @-moz-keyframes marquee {
