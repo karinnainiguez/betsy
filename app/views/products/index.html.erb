@@ -1,17 +1,19 @@
-<p>Here is a list of all products</p>
 
-<%= link_to("Add a New Product", new_product_path, class: "important") %>
+
+<h2 class = "browser-header"><%= link_to("Add a New Product", new_product_path, class: "important") %></h2>
 
 <section class="product-container">
   <% @products.each do |product| %>
   <div class="product-box">
-      <strong><%= link_to(product.name, product_path(product)) %></strong>
-      <%= image_tag product.image.url(:medium) %>
+    <strong><%= link_to(product.name, product_path(product)) %></strong>
+    <%= image_tag product.image.url(:medium) %>
+    <li>
+      Price:  <%= number_to_currency(product.price) %>
+    </li>
+    <li>
+      Average Rating: <%= product.average_rating %>
+    </li>
   </div>
 
   <% end %>
 </section>
-
-models: products
-users
-order - models & validation??
