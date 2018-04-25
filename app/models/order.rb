@@ -1,14 +1,10 @@
 class Order < ApplicationRecord
   has_many :cartitems
 
-  validates_presence_of :name, on: :purchase
-  validates_presence_of :state, on: :purchase
-  validates_presence_of :email,  on: :purchase
-  validates_presence_of :ccnumber,  on: :purchase
-  validates_presence_of :ccexpiration, on: :purchase
-  validates_presence_of :cvv, on: :purchase
-  validates_presence_of :address, on: :purchase
-  validates_presence_of :zipcode, on: :purchase
+  validates_presence_of :name, :email, :ccnumber, :ccexpiration, :cvv, :address, :zipcode, on: :purchase
+  validates_length_of :ccnumber, :within => 16..19, on: :purchase
+  validates_length_of :cvv, :within => 3..4, on: :purchase
+  validates :ccexpiration, inclusion: { in: (Date.today..Date.today + 5.years) }, on: :purchase
 
   def complete_checkout
     self.state = "paid"
@@ -29,5 +25,13 @@ class Order < ApplicationRecord
     end
     return items
   end
+
+  def total
+    items = Cartitem.where(order_id: self.id)
+    totals = items.map{ |item| item.product.price * item.quantity }
+    return totals.sum
+  end
+
+
 
 end

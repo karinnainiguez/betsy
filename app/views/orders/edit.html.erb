@@ -1,13 +1,16 @@
 
 <%= render partial: "layouts/errors", locals: { model: @order } %>
 
+<h3>Order Confirmation</h3>
+<p>Please provide information below and click submit to complete your purchase.</p>
+
 
 <section class="order-form">
-  <h3>Order Confirmation</h3>
-  <p>Please provide information below and click submit to complete your purchase.</p>
 
   <%= form_for @order do |f| %>
 
+  <%= f.hidden_field :state %>
+  
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -17,8 +20,6 @@
   <%= f.label :address %>
   <%= f.text_field :address %>
 
-  <%= f.label :state %>
-  <%= f.text_field :state %>
 
   <%= f.label :zipcode %>
   <%= f.text_field :zipcode %>
