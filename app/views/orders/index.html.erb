@@ -6,7 +6,7 @@
     <th>Actions</th>
   </tr>
 
-<% CartItem.where(order_id: @order.id).each do |item| %>
+<% Cartitem.where(order_id: @order.id).each do |item| %>
 <% @product = Product.find(item.product_id) %>
 <tr> Item <%= @product.name %></tr>
 <tr>Price <%= @product.price %></tr>

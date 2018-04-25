@@ -52,8 +52,10 @@ footer {
 }
 
 .top-bar-left a {
-  font-size: 1.5em;
+  font-size: 2.5em;
   font-weight: bold;
+  font-family: Arnoldboecklin, fantasy;
+  margin-left: 60px;;
 }
 
 .top-bar-right li {
