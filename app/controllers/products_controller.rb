@@ -8,9 +8,11 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new(user_id: params[:user_id])
+
   end
 
   def create
+    @categories = @product.categories
     @product = Product.new(product_params)
     if @product.save
       redirect_to products_path
@@ -23,11 +25,14 @@ class ProductsController < ApplicationController
   def show
     @review = Review.new
     @cart_item = Cartitem.new
+  @categories = @product.categories
+
   end
 
   def edit;end
 
   def update
+    @categories = @product.categories
     product= Product.find(params[:id])
     product.assign_attributes(product_params)
     if product.save
@@ -52,7 +57,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    return params.require(:product).permit(:name, :price, :stock, :product_status, :user_id, :categories, :image)
+    return params.require(:product).permit(:name, :price, :stock, :product_status, :user_id, :image, :categories=>[])
   end
 
   def find_product
