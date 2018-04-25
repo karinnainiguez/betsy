@@ -33,10 +33,9 @@ class ProductsController < ApplicationController
 
   def update
     @categories = @product.categories
-    product= Product.find(params[:id])
-    product.assign_attributes(product_params)
-    if product.save
-      redirect_to product_path(product)
+    @product.assign_attributes(product_params)
+    if @product.save
+      redirect_to product_path(@product)
     else
       render :edit, :status => :bad_request
     end
@@ -57,7 +56,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    return params.require(:product).permit(:name, :price, :stock, :product_status, :user_id, :image, :categories=>[])
+    return params.require(:product).permit(:name, :price, :stock, :product_status, :user_id, :image, :description, category_ids: [])
   end
 
   def find_product

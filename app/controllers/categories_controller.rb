@@ -48,6 +48,6 @@ private
   end
 
   def category_params
-    params.require(:category).permit(:name, :product_ids => [])
+    params.require(:category).permit(:name, product_ids: [])
   end
 end

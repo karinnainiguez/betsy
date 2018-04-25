@@ -1,3 +1,4 @@
+<%= render partial: "layouts/errors", locals: { model: @product} %>
 <h4>
   <% page_title ||= "Product Changes" %>
   <%= page_title %>
@@ -17,24 +18,23 @@
   <%= f.number_field :stock %>
 
   <%= f.label :price %>
-  <%= f.number_field :price %>
+ <%= f.number_field :price, :step => 0.01 %>
 
-  <%= f.label :user_id %>
-  <%= f.number_field :user_id, :value => :user_id %>
-
+  <%= f.hidden_field :user_id %>
 
   <%= f.label :description %>
   <%= f.text_area :description %>
 
   <div class="add category">
 
-<% form_for @category |f| %>
+
     Select a category from the list
 
-    <div class="field">
-        <%= f.association :category, input_html: { class: 'chosen-select', multiple: true } %>
-    </div>
-<% end %>
+    <div>
+      <%= f.label :cateogories %>
+      <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
+      </div>
+
 
   </div>
 
