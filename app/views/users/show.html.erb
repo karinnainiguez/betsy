@@ -37,7 +37,7 @@
       <ul>
         <% collection.each do |product| %>
         <div>
-          <li><strong>Product Name:</strong> <%= product.name %></li>
+          <li><strong>Product Name:</strong> <%= link_to "#{product.name}", product_path(product) %></li>
           <li><strong>Price:</strong> <%= product.price %></li>
           <li><strong>Description:</strong> <%= product.description %></li>
           <li><strong>Items Available:</strong> <%= product.stock %></li>
