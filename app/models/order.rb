@@ -32,6 +32,14 @@ class Order < ApplicationRecord
     return totals.sum
   end
 
-
+  def cancel
+    self.cartitems.each do |item|
+      item.product.stock += item.quantity
+      if !item.product.save
+        return false
+      end
+    end
+    return true
+  end
 
 end
