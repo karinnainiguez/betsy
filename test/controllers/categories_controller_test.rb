@@ -43,6 +43,8 @@ describe CategoriesController do
 
   describe 'new' do
     it 'responds with success' do
+      user = User.first
+      login(user)
       get new_category_path
       must_respond_with :success
     end
@@ -51,6 +53,8 @@ describe CategoriesController do
   describe 'create' do
 
     it 'can create a valid category' do
+      user = User.first
+      login(user)
       cat_params = {
         name: "test category"
       }
@@ -67,6 +71,8 @@ describe CategoriesController do
     end
 
     it "won't create an invalid category" do
+      user = User.first
+      login(user)
       cat_data = {
         name: Category.first.name
       }
@@ -85,6 +91,8 @@ describe CategoriesController do
 
   describe 'destroy' do
     it 'can destroy an empty category' do
+      user = User.first
+      login(user)
       category_id = Category.first.id
       old_count = Category.count
 
@@ -98,6 +106,8 @@ describe CategoriesController do
     end
 
     it "can't destroy a category with products" do
+      user = User.first
+      login(user)
       old_count = Category.count
       category = Category.first
 

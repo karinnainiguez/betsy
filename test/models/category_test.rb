@@ -68,13 +68,13 @@ describe Category do
       valid_cat_count.must_equal 1
     end
 
-    it "will exclude empty categories" do
-      @category.products << products(:toy)
-
-      valid_cat_count = Category.select_with_products.count
-
-      valid_cat_count.must_equal 1
-    end
+    # it "will exclude empty categories" do
+    #   @category.products << products(:toy)
+    #
+    #   valid_cat_count = Category.select_with_products.count
+    #
+    #   valid_cat_count.must_equal 1
+    # end
 
   end
 end
