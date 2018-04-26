@@ -22,7 +22,6 @@ describe SessionsController do
     end
 
     it 'logs in an existing user' do
-      #arrange
       user = User.first
       old_user_count = User.count
 
