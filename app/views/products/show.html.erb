@@ -1,41 +1,50 @@
 <h2>Details for <%= @product.name %></h2>
 
+
 <article class="tabs">
 
-  <section id="tab1">
-    <h2><a href="#tab1">Product Info</a></h2>
-    <h4>Product Information</h4>
-    <p>Name: <%= @product.name %></p>
-    <p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
-    <p>Price: <%= @product.price %></p>
-    <p>Stock: <%= @product.stock %></p>
+  <section id="tab1 tab-block">
 
+    <ul id = "tab-block">
 
-    <ul class = "categoryproductpage">
-      Categories:
-      <% @product.categories.each do |category| %>
-      <li>
-        <%= link_to category.name.capitalize, category_path(category.id) %>
+      <li id = "tab-block-item">
+        <%= image_tag @product.image.url(:large) %>
       </li>
-      <% end %>
+      <li id = "tab-block-item">
+        <h2><a href="#tab1">Product Info</a></h2>
+        <p>Name: <%= @product.name %></p>
+        <p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
+        <p>Price: <%= number_to_currency(@product.price) %></p>
+        <p>Stock: <%= @product.stock %></p>
+
+        <ul class = "categoryproductpage">
+          Categories:
+          <% @product.categories.each do |category| %>
+          <li>
+            <%= link_to category.name.capitalize, category_path(category.id) %>
+          </li>
+          <% end %>
+        </ul>
+
+        <%= form_for @cart_item , url: product_cartitems_path(@product.id) do |f| %>
+        <%= f.label :quantity %>
+        <%= f.select :quantity, options_for_select(1..@product.stock) %>
+        <%= f.submit "Add to cart" %>
+        <% end %>
+
+
+        <ul class = "productshowbottombuttons">
+          <% if session[:user_id] == @product.user_id %>
+          <li class = "button hollow">
+            <%= link_to "Edit", edit_product_path(@product) %>
+          </li>
+          <li class = "button hollow">
+            <%= link_to("Discontinue", product_retire_path(@product), method: :post, data: { confirm: "Are you sure you want to discontinue Product #{ @product.name }?" }) %>
+          </li>
+        </ul>
+        <% end %>
+      </li>
     </ul>
-
-    <%= form_for @cart_item , url: product_cartitems_path(@product.id) do |f| %>
-    <%= f.label :quantity %>
-    <%= f.select :quantity, options_for_select(1..@product.stock) %>
-    <%= f.submit "Add to cart" %>
-    <% end %>
-
-    <% if session[:user_id] == @product.user_id %>
-    <ul class = "productshowbottombuttons">
-      <li>
-        <%= link_to "Edit", edit_product_path(@product) %>
-      </li>
-      <li>
-        <%= link_to("Discontinue", product_retire_path(@product), method: :post, data: { confirm: "Are you sure you want to discontinue Product #{ @product.name }?" }) %>
-      </li>
-    </ul>
-    <% end %>
   </section>
 
   <section id="tab2">
@@ -43,10 +52,10 @@
     <h4>Product Reviews</h4>
     <table>
       <tr>
-        <th>User</th>
-        <th>Date</th>
-        <th>Rating</th>
-        <th>Review</th>
+        <th><strong>User</strong></th>
+        <th><strong>Date</strong></th>
+        <th><strong>Rating</strong></th>
+        <th><strong>Review</strong></th>
       </tr>
 
       <% @product.reviews.each do |review| %>

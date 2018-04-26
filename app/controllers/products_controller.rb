@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.order(:name)
+    @products = @products.select { |product| product.product_status == nil }
   end
 
   def new

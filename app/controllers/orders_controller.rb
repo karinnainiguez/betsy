@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
 
   def show
     #confirmation page after they have paid
-    order = Order.find_by(id: session[:order_id])
+    @order = Order.find_by(id: session[:order_id])
   end
 
   def edit; end

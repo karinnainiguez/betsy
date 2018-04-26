@@ -22,11 +22,18 @@ describe SessionsController do
     end
 
     it 'logs in an existing user' do
+
       #arrange
       user = User.first
       old_user_count = User.count
 
       login(user)
+
+      user = User.first
+      old_user_count = User.count
+
+      login(user
+      )
 
       User.count.must_equal old_user_count
       session[:user_id].must_equal user.id
@@ -62,6 +69,16 @@ describe SessionsController do
       get root_path
 
       User.count.must_equal old_user_count
+
+        email: 'test@tester.com',
+        name: 'test user'
+      )
+
+    end
+
+    it 'does not log in if the user data is invalid' do
+      #validation fails
+
     end
 
     #what about if the user is already logged in?

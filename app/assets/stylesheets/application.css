@@ -13,9 +13,8 @@
 
  *
  *= require_tree .
- *= require_self
  *= require foundation_and_overrides
-
+*= require_self
  */
 
 body {
@@ -74,12 +73,14 @@ footer {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  align-content: flex-start;
+  align-content: center;
+  align-items: center;
+  text-align: center;
  }
 
 .product-box {
   width: 200px;
-  height: 200px;
+  height: 300px;
   border: 1px black solid;
   margin: 0 0 1em 1em;
   // display: flex;
@@ -87,5 +88,6 @@ footer {
   // height: 80%;
   // flex-wrap: wrap;
   // flex-direction: row;
-  // justify-content: space-around;
+  // justify-content: center;
+
 }
