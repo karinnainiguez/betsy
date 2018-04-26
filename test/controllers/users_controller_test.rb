@@ -19,12 +19,12 @@ describe UsersController do
     end
 
     describe "show" do
-      it "sends success if the book exists" do
+      it "sends success if the user exists" do
         get user_path(User.first)
         must_respond_with :success
       end
 
-      it "sends not_found if the book doesnt exist" do
+      it "sends not_found if the user doesnt exist" do
         user_id = User.last.id + 1
         get user_path(user_id)
 
