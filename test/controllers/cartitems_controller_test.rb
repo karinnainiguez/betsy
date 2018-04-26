@@ -21,62 +21,57 @@ describe CartitemsController do
   end
 
   describe 'create' do
-    # describe 'it can create a valid cartitem' do
-    #   # Arrange
-    #   cartitem_data = {
-    #     quantity: 1,
-    #     user_id: User.first.id,
-    #     order_id: Order.first.id
-    #   }
-    #   old_cartitem_count = Cartitem.count
-    #
-    #   # Assumptions
-    #   Cartitem.new(cartitem_data).must_be :valid?
+    #method was written and you're not using it anywhere
+    #cartitems are entities that created by another action, create is not being used and shouldn't be in the code
+    describe 'it can create a valid cartitem' do
+      # Arrange
 
-    # Act
-    # post books_path, params: { book: book_data }
-    #
-    # # Assert
-    # must_respond_with :redirect
-    # must_redirect_to books_path
-    #
-    # Book.count.must_equal old_book_count + 1
-    # Book.last.title.must_equal book_data[:title]
+    a = Product.find_by(name: 'chew toy')
+id = a.id
+      cartitem_data = {
+        quantity: 1,
+        product_id: id,
+        order_id: Order.first.id
+      }
+      old_cartitem_count = Cartitem.count
+
+      # Assumptions
+
+
+
+      # Act
+    post product_cartitems_path(id), params: { cartitem: cartitem_data }
+      #
+      # # Assert
+      # must_respond_with :redirect
+      # must_redirect_to books_path
+      #
+      # Book.count.must_equal old_book_count + 1
+      # Book.last.title.must_equal book_data[:title]
+    end
+
+
+
+
+    describe 'delete' do
+      puts Cartitem.first
+      # old_count = Cartitem.count
+      #
+      # id = Cartitem.first.id
+      #
+      #
+      # delete delete_cartitem_path(id)
+      #
+      # must_respond_with :redirect
+      #       must_redirect_to cartitems_path
+      #
+      #       Cartitems.count.must_equal old_count - 1
+
+    end
   end
 
-
-  describe 'delete' do
-    puts Cartitem.first
-    # old_count = Cartitem.count
-    #
-    # id = Cartitem.first.id
-    #
-    #
-    # delete delete_cartitem_path(id)
-    #
-    # must_respond_with :redirect
-    #       must_redirect_to cartitems_path
-    #
-    #       Cartitems.count.must_equal old_count - 1
-
-  end
 end
 
-# describe 'delete' do
-# old_count = Cartitem.count
-# first = Cartitem.first
-#
-# delete delete_cartitem_path(first)
-#
-# must_respond_with :redirect
-#       must_redirect_to cartiems_path
-#
-#       Cartitems.count.must_equal old_count - 1
-#
-# end
-
-
-
-#delete - destroy
-#update - patch
-#quantity
+  #delete - destroy
+  #update - patch
+  #quantity

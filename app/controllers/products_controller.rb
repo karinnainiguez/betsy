@@ -24,8 +24,7 @@ class ProductsController < ApplicationController
   def show
     @review = Review.new
     @cart_item = Cartitem.new
-  @categories = @product.categories
-
+    @categories = @product.categories
   end
 
   def edit;end
