@@ -8,10 +8,7 @@ class OrdersController < ApplicationController
     @orders = Order.filter_by(session[:user_id])
   end
 
-  def show
-    #confirmation page after they have paid
-    @order = Order.find_by(id: session[:order_id])
-  end
+  def show; end
 
   def edit; end
 
@@ -34,7 +31,7 @@ class OrdersController < ApplicationController
       render :show
     else
       flash.now[:success] = "Sorry, could not cancel your order!"
-      render :show
+      render :show, status: :bad_request
     end
   end
 
