@@ -185,10 +185,16 @@ describe 'update' do
   describe 'retired' do
 
     it 'changes a product_status when a product is retired' do
+      user = User.first
+      login(user)
       @product = Product.first
+      @product.user = user
+      @product.save
+      @product.reload
 
       # @product.retire
-      post retire_path(@product)
+      post product_retire_path(@product)
+      must_respond_with :redirect
 
       #fetch info from db for test
       @product.reload

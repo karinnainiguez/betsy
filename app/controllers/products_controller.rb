@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy, :retire]
   before_action :require_login, except: [:index, :show]
 
   def index
@@ -40,10 +40,10 @@ class ProductsController < ApplicationController
   end
 
   def retire
-    product = Product.find(params[:product_id])
-    product.product_status = 'retired'
+    @product.product_status = 'retired'
 
-    if product.save
+    if @product.save
+      flash[:success] = "Product successfully retired"
       redirect_back fallback_location: root_path
     else
       flash[:failure]="Unable to delete the product"
@@ -59,6 +59,9 @@ class ProductsController < ApplicationController
 
   def find_product
     @product = Product.find_by(id: params[:id])
+    if !@product
+      @product = Product.find_by(id: params[:product_id])
+    end
 
     head :not_found unless @product
   end
