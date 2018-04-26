@@ -64,6 +64,16 @@ describe SessionsController do
       User.count.must_equal old_user_count
     end
 
+    it 'can logout of a user session' do
+      user = User.first
+      login(user)
+      session[:user_id].must_equal user.id
+
+      delete logout_path
+      must_respond_with :redirect
+      session[:user_id].must_be_nil
+    end
+
     it 'will not let user login if already logged in' do
       login(User.first)
 
