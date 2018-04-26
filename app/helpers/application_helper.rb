@@ -11,3 +11,4 @@ module ApplicationHelper
     return total / reviews.count
 
   end
+end
