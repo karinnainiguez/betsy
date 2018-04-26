@@ -28,6 +28,8 @@ describe ProductsController do
       }
     end
     it 'responds with success' do
+      user = User.first
+      login(user)
       get new_product_path
       must_respond_with :success
     end
@@ -44,7 +46,8 @@ describe ProductsController do
 
     it 'can add a product' do
       # Arrange
-
+      user = User.first
+      login(user)
       old_product_count = Product.count
 
       # Assumptions
