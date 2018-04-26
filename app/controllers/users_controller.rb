@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @available = @user.avail_prod
     @soldout = @user.soldout_prod
-    @retired = @user.soldout_prod
+    @retired = @user.retired_prod
   end
 
   # def new
