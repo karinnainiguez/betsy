@@ -2,7 +2,7 @@ require "test_helper"
 
 describe CartitemsController do
   describe 'index' do
-    it 'sends a success response when there are many cartitems' do
+    it 'sends a success reresponse when there are many cartitems' do
       Cartitem.count.must_be :>, 0
 
       get cart_path

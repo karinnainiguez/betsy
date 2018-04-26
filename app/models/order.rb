@@ -14,17 +14,6 @@ class Order < ApplicationRecord
     end
   end
 
-  def self.filter_by(user_id)
-    items = []
-    self.all.each do |order|
-      order.cartitems.each do |item|
-        if item.product.user.id == user_id
-          items << item
-        end
-      end
-    end
-    return items
-  end
 
   def total
     items = Cartitem.where(order_id: self.id)
@@ -39,7 +28,24 @@ class Order < ApplicationRecord
         return false
       end
     end
-    return true
+
+    self.state = "cancelled"
+
+    return self.save
+
+  end
+
+
+  def self.filter_by(user_id)
+    items = []
+    self.all.each do |order|
+      order.cartitems.each do |item|
+        if item.product.user.id == user_id
+          items << item
+        end
+      end
+    end
+    return items
   end
 
 end

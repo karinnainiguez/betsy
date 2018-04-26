@@ -4,14 +4,9 @@
   <section class="user product-box">
     <ul>
       <div class="pic"></div>
-      <li>Name: <%= link_to(user.name, user_path(user)) %></li>
-      <li>
-        <%= mail_to user.email do %>
-        <strong>Email: <%= user.email %></strong>
-        <% end %>
-      </li>
+      <li><%= link_to(user.name, user_path(user)) %></li>
       <li>Products Available: <%= user.products.count %></li>
-      <li>Average Rating: <%= '%.2f' % user.average_rating(user) %></li>
+      <li>Average Rating: <%= '%.2f' % average_rating(user) %></li>
     </ul>
   </section>
 

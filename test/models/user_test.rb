@@ -1,13 +1,10 @@
 require "test_helper"
 
 describe User do
+
   describe "validations" do
-    # all validations pass
+
     before do
-
-      # user = User.first
-
-
       @user = User.new(name: "test name", email: "ada@ada.org")
     end
 
@@ -28,7 +25,6 @@ describe User do
       result = @user.valid?
 
       result.must_equal false
-      # @user.must_include :name
     end
 
     it "is invalid without a name" do
@@ -38,7 +34,6 @@ describe User do
       result = @user.valid?
 
       result.must_equal false
-      # @user.must_include :email
     end
 
     it "is invalid with a duplicate name" do
@@ -48,7 +43,6 @@ describe User do
       result = @user.valid?
 
       result.must_equal false
-      # @book.must_include :name
     end
 
     it "is invalid with a duplicate email" do
@@ -58,7 +52,6 @@ describe User do
       result = @user.valid?
 
       result.must_equal false
-      # @book.must_include :email
     end
   end
 
@@ -77,15 +70,13 @@ describe User do
 
       # Assert
       @user.product_ids.must_include product.id
-
-
     end
   end
 
   describe "#deactivate" do
     before do
       @user = User.first
-      @product = Product.create(
+      @product = Product.create!(
         name: "test product",
         stock: 3,
         price: 4.56,
@@ -119,7 +110,135 @@ describe User do
       proc {
         User.find_by(id: user_id).deactivate
       }.must_raise
+    end
 
+  end
+
+  describe "avail_prod" do
+
+    before do
+      @user = User.create!(name: "test", email: "testemail")
+      @product1 = Product.create!(name: "first", price: 2.34, stock:14, user: @user)
+      @product2 = Product.create!(name: "second", price: 2.34, stock:14, user: @user)
+      @product3 = Product.create!(name: "third", price: 2.34, stock:14, user: @user)
+    end
+
+    it "returns an array when user has available products" do
+
+      result = @user.avail_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 3
+
+    end
+
+    it "returns empty array when user does not have available products" do
+      @product1.product_status = "retired"
+      @product1.save
+      @product2.product_status = "retired"
+      @product2.save
+      @product3.product_status = "retired"
+      @product3.save
+
+      result = @user.avail_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 0
+
+    end
+
+    it "returns empty array when user doesnt have any products at all" do
+      @product1.destroy
+      @product2.destroy
+      @product3.destroy
+
+      result = @user.avail_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 0
+    end
+
+  end
+
+  describe "soldout_prod" do
+
+    before do
+      @user = User.create!(name: "test", email: "testemail")
+      @product1 = Product.create!(name: "first", price: 2.34, stock:0, user: @user)
+      @product2 = Product.create!(name: "second", price: 2.34, stock:0, user: @user)
+      @product3 = Product.create!(name: "third", price: 2.34, stock:0, user: @user)
+    end
+
+    it "returns an array when user has soldout products" do
+      result = @user.soldout_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 3
+    end
+
+    it "returns empty array when user does not have soldout products" do
+      @product1.stock = 3
+      @product1.save
+      @product2.stock = 3
+      @product2.save
+      @product3.stock = 3
+      @product3.save
+      result = @user.soldout_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 0
+    end
+
+    it "returns empty array when user doesnt have any products at all" do
+      @product1.destroy
+      @product2.destroy
+      @product3.destroy
+
+      result = @user.soldout_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 0
+    end
+
+  end
+
+  describe "retired_prod" do
+    before do
+      @user = User.create!(name: "test", email: "testemail")
+      @product1 = Product.create!(name: "first", price: 2.34, stock:0, user: @user, product_status: "retired")
+      @product2 = Product.create!(name: "second", price: 2.34, stock:0, user: @user, product_status: "retired")
+      @product3 = Product.create!(name: "third", price: 2.34, stock:0, user: @user, product_status: "retired")
+    end
+    it "returns an array when user has retired products" do
+
+      result = @user.retired_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 3
+    end
+
+    it "returns empty array when user does not have retired products" do
+      @product1.product_status = nil
+      @product1.save
+      @product2.product_status = nil
+      @product2.save
+      @product3.product_status = nil
+      @product3.save
+      result = @user.retired_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 0
+    end
+
+    it "returns empty array when user doesnt have any products at all" do
+      @product1.destroy
+      @product2.destroy
+      @product3.destroy
+
+      result = @user.retired_prod
+
+      result.must_be_instance_of Array
+      result.length.must_equal 0
     end
 
   end

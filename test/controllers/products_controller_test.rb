@@ -28,6 +28,8 @@ describe ProductsController do
       }
     end
     it 'responds with success' do
+      user = User.first
+      login(user)
       get new_product_path
       must_respond_with :success
     end
@@ -44,7 +46,8 @@ describe ProductsController do
 
     it 'can add a product' do
       # Arrange
-
+      user = User.first
+      login(user)
       old_product_count = Product.count
 
       # Assumptions
@@ -101,6 +104,8 @@ describe ProductsController do
 
   describe 'edit' do
   it 'sends success if the product exists' do
+    user = User.first
+    login(user)
     get edit_product_path(Product.first)
     must_respond_with :success
   end
@@ -119,6 +124,8 @@ end
 describe 'update' do
     it 'updates an existing product with valid data' do
       # Arrange
+      user = User.first
+      login(user)
       product = Product.first
       product_data = product.attributes
       product_data[:stock] = 3
@@ -142,6 +149,8 @@ describe 'update' do
 
     it 'sends bad_request for invalid data' do
       # Arrange
+      user = User.first
+      login(user)
       product = Product.first
       product_data = product.attributes
       product_data[:name] = ""
