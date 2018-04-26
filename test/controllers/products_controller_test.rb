@@ -188,7 +188,7 @@ describe 'update' do
       @product = Product.first
 
       # @product.retire
-      post retire_path(@product)
+      post product_retire_path(@product)
 
       #fetch info from db for test
       @product.reload
