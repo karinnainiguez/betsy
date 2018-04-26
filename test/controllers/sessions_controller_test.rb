@@ -26,19 +26,42 @@ describe SessionsController do
       user = User.first
       old_user_count = User.count
 
-      login(user
-      )
+      login(user)
+
       User.count.must_equal old_user_count
       session[:user_id].must_equal user.id
     end
 
     it 'does not log in with insufficient data' do
       #Auth hash does not include a uid
+      user = User.new(
+        uid: 80085,
+        name: 'test user'
+      )
+      user.wont_be :valid?
+      old_user_count = User.count
 
+      login(user)
+      User.count.must_equal old_user_count
     end
 
     it 'does not log in if the user data is invalid' do
-      #validation fails
+      old_user_count = User.count
+
+      exist_user = User.first
+      name = exist_user.name
+
+      user = User.new(
+        provider: 'github',
+        uid: 80085,
+        email: 'test@tester.com',
+        name: name
+      )
+      user.wont_be :valid?
+      login(user)
+      get root_path
+
+      User.count.must_equal old_user_count
     end
 
     #what about if the user is already logged in?
