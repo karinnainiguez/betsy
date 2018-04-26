@@ -45,5 +45,5 @@ class User < ApplicationRecord
   def retired_prod
     self.products.select{|p| p.product_status == 'retired'}
   end
-  
+
 end
