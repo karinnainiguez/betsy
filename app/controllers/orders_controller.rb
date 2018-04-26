@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_action :find_order, only: [:show, :edit, :update]
+  before_action :find_order, only: [:show, :edit, :update, :destroy]
 
   before_action :require_login, except: [:show, :edit, :update, :destroy]
 
@@ -29,8 +29,15 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-
+    if @order.cancel
+      flash.now[:success] = "Your Order has been cancelled!"
+      render :show
+    else
+      flash.now[:success] = "Sorry, could not cancel your order!"
+      render :show
+    end
   end
+
 
   private
 
