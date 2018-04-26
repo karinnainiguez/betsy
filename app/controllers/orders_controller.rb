@@ -30,6 +30,10 @@ class OrdersController < ApplicationController
 
   end
 
+  def cancel_order
+    
+  end
+
   private
 
   def find_order
