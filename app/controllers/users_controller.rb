@@ -13,21 +13,6 @@ class UsersController < ApplicationController
     @retired = @user.retired_prod
   end
 
-  # def new
-  #   @user = User.new
-  # end
-
-  # def create
-  #   @user = User.new(user_params)
-  #
-  #   if @user.save
-  #     flash[:success] = "User added successfully"
-  #     redirect_to user_path(@user)
-  #   else
-  #     flash[:failure] = "Validations Failed"
-  #     render :new, status: :bad_request
-  #   end
-  # end
 
   def edit; end
 

@@ -11,7 +11,7 @@
         <% end %>
       </li>
       <li>Products Available: <%= user.products.count %></li>
-      <li>Average Rating: <%= '%.2f' % user.average_rating %></li>
+      <li>Average Rating: <%= '%.2f' % user.average_rating(user) %></li>
     </ul>
   </section>
 

@@ -21,19 +21,6 @@ class User < ApplicationRecord
     return true
   end
 
-  def average_rating
-    reviews = self.reviews
-
-    return 0 if reviews.count == 0
-
-    total = reviews.map do |rating|
-      rating.rating
-    end.sum.to_f
-
-    return total / reviews.count
-
-  end
-
   def avail_prod
     self.products.select{|p| !p.product_status && p.stock > 0}
   end
