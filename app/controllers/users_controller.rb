@@ -8,9 +8,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @available = @user.products.select{|p| !p.product_status && p.stock > 0}
-    @soldout = @user.products.select{|p| !p.product_status && p.stock == 0}
-    @retired = @user.products.select{|p| p.product_status == 'retired'}
+    @available = @user.avail_prod
+    @soldout = @user.soldout_prod
+    @retired = @user.soldout_prod
   end
 
   # def new
