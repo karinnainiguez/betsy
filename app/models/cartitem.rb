@@ -4,7 +4,7 @@ class Cartitem < ApplicationRecord
 
   validates :quantity, presence: true,
   numericality: { only_integer: true, greater_than: 0 }
-  # validates :product, presence: true, uniqueness: { scope: :order }
+  validates :product, presence: true, uniqueness: { scope: :order }
 
   def update_stock
     quantity = self.quantity

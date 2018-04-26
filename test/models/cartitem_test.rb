@@ -66,6 +66,22 @@ describe Cartitem do
       result2.must_equal false
     end
 
+    it 'duplicate cartitems cannot be added to product' do
+      cart_item = Cartitem.new(
+        order: @order,
+        product: @product,
+        quantity: 3
+      )
+      cart_item.save
+
+      dup_item = Cartitem.new(
+        order: @order,
+        product: @product,
+        quantity: 2
+      )
+      result = dup_item.valid?
+      result.must_equal false
+    end
   end
 
   describe "relations" do
