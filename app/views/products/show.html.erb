@@ -12,8 +12,8 @@
       </li>
       <li id = "tab-block-item">
         <h2><a href="#tab1">Product Info</a></h2>
-        <p>Name: <%= @product.name %></p>
-        <p>Seller: <%= link_to @product.user.name, user_path(@product.user)%></p>
+        <h4> <%= @product.name %> Summary</h4>
+        <p>Sold by: <%= link_to @product.user.name, user_path(@product.user)%></p>
         <p>Price: <%= number_to_currency(@product.price) %></p>
         <p>Stock: <%= @product.stock %></p>
 
