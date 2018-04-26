@@ -2,7 +2,7 @@ require "test_helper"
 
 describe CartitemsController do
   describe 'index' do
-    it 'sends a success response when there are many cartitems' do
+    it 'sends a success reresponse when there are many cartitems' do
       Cartitem.count.must_be :>, 0
 
       get cart_path
@@ -45,8 +45,6 @@ describe CartitemsController do
   end
 
 
-
-
   describe 'delete' do
     puts Cartitem.first
     # old_count = Cartitem.count
@@ -63,6 +61,19 @@ describe CartitemsController do
 
   end
 end
+
+# describe 'delete' do
+# old_count = Cartitem.count
+# first = Cartitem.first
+#
+# delete delete_cartitem_path(first)
+#
+# must_respond_with :redirect
+#       must_redirect_to cartiems_path
+#
+#       Cartitems.count.must_equal old_count - 1
+#
+# end
 
 
 
