@@ -10,20 +10,27 @@ class CartitemsController < ApplicationController
   end
 
   def create
-    #  get quantity from form
-    @cart_item = Cartitem.new(cartitem_params)
-    #  find the product from path
-    @cart_item.product = Product.find(params[:product_id])
 
-    #  find order from session /
-    # create new order if no session
-    if session[:order_id]
-      @cart_item.order = Order.find(session[:order_id])
+    @cart_item = Cartitem.find_by(order: session[:order_id], product: params[:product_id])
+    #  get quantity from form
+    if @cart_item
+      @cart_item.quantity += params[:cartitem][:quantity].to_i
+      
     else
-      order = Order.create!(state: 'pending')
-      @cart_item.order = order
-      session[:order_id] = order.id
+      @cart_item = Cartitem.new(cartitem_params)
+      #  find the product from path
+      @cart_item.product = Product.find(params[:product_id])
+      #  find order from session /
+      # create new order if no session
+      if session[:order_id]
+        @cart_item.order = Order.find(session[:order_id])
+      else
+        order = Order.create!(state: 'pending')
+        @cart_item.order = order
+        session[:order_id] = order.id
+      end
     end
+
 
 
     # save
@@ -32,7 +39,7 @@ class CartitemsController < ApplicationController
       redirect_to cart_path
     else
       flash[:failure] = "Sorry, not able to add!"
-      redirect_back fallback_location: root
+      redirect_back fallback_location: root_path
     end
 
   end

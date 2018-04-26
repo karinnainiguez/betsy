@@ -46,7 +46,31 @@ describe CartitemsController do
 
 
   describe 'delete' do
-    puts Cartitem.first
+
+    it "something" do
+
+      order = Order.create!
+      product = Product.create!(
+        name: 'test-test-product',
+        price: 44,
+        stock: 4,
+        user: User.first
+      )
+
+      b = Cartitem.create!(quantity: 3, order: order, product: product)
+
+
+      old_count = Cartitem.count
+
+      delete delete_cartitem_path(b)
+
+      must_respond_with :redirect
+      must_redirect_to cart_path
+
+      Cartitem.count.must_equal old_count - 1
+    end
+
+
     # old_count = Cartitem.count
     #
     # id = Cartitem.first.id
