@@ -39,7 +39,11 @@ class Order < ApplicationRecord
         return false
       end
     end
-    return true
+
+    self.state = "cancelled"
+
+    return self.save
+
   end
 
 end
