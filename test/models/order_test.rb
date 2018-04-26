@@ -14,42 +14,53 @@ describe Order do
 
     end
 
-    it "is invalid without a name" do
-      @order.name = nil
+    # it "is invalid without a name" do
+    #   @order.name = nil
+    #
+    #   result = @order.valid?
+    #
+    #   result.must_equal false
+    #
+    # end
+    #
+    # it "is invalid with a duplicate cc" do
+    #   dup_order = Order.first
+    #
+    #   @order.ccnumber = dup_order.ccnumber
+    #
+    #   result = @order.valid?
+    #
+    #   result.must_equal false
+    # end
 
-      result = @order.valid?
-
-      result.must_equal false
-
+    it "can be created without all valid fields" do
     end
 
-    it "is invalid with a duplicate cc" do
-      dup_order = Order.first
+    it "cannot be purchased with invalid name" do
+    end
 
-      @order.ccnumber = dup_order.ccnumber
+    it "cannot be purchased with invalid cc number" do
+    end
 
-      result = @order.valid?
+    it 'cannot be purchased if today is past cc expiration date' do
+    end
 
-      result.must_equal false
+    it 'cannot be purchased if cvv is invalid' do
     end
   end
 
-  # describe "relations" do
-  #   before do
-  #     @order = Order.first
-  #
-  #   end
-  #
-  #   it "connects order and cart_item"
-  #
-  #   cart_item = CartItem.first
-  #
-  #   @order.cart_items << cart_item
-  #
-  #   @order.cart_item_ids.must_include cart_item.id
-  #
-  #
-  # end
+  describe "relations" do
+    before do
+      @order = Order.first
 
+    end
 
+    it "connects order and cart_item" do
+      cart_item = Cartitem.first
+
+      @order.cartitems << cart_item
+
+      @order.cartitem_ids.must_include cart_item.id
+      end
+  end
 end
