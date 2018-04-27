@@ -27,7 +27,7 @@ li {
 
   article.tabs
   {
-  	position:fixed;
+  	position: fixed;
   	display: block;
   	width: 80%;
   	height: 400px;
@@ -134,7 +134,6 @@ article.tabs section h2
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 2fr;
-  box-sizing:content-box;
 
 }
 
