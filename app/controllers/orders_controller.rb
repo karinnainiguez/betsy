@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   before_action :require_login, except: [:show, :edit, :update, :destroy]
 
   def index
-    @orders = Order.filter_by(session[:user_id])
+    @cartitems = Order.filter_by(session[:user_id])
   end
 
   def show; end

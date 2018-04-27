@@ -8,7 +8,6 @@
   </tr>
 
 
-  <% total = 0 %>
   <% @order.cartitems.each do |cartitem| %>
   <tr>
     <td>
@@ -23,14 +22,13 @@
     <td>
       <%= number_to_currency(cartitem.quantity * cartitem.product.price) %>
     </td>
-    <% total += cartitem.quantity * cartitem.product.price %>
   </tr>
   <% end %>
   <tr>
-    <td>  </td>
-    <td>   </td>
+    <td></td>
+    <td></td>
     <td><strong>Total</strong></td>
-    <td><strong><%= number_to_currency(total) %></strong></td>
+    <td><strong><%= number_to_currency(@order.total) %></strong></td>
   </tr>
 </table>
 

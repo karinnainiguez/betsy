@@ -23,7 +23,7 @@ body {
 }
 
 main {
-  margin: 20vh;
+  margin: 20vh 5vw;
 }
 
 .top-bar, footer{
@@ -65,7 +65,7 @@ footer {
   font-weight: bold;
 }
 
-.top-bar-left:hover { 
+.top-bar-left:hover {
   font-weight: bold;
 }
 
@@ -100,4 +100,34 @@ pic {
 #tab-block-item {
   overflow-y: scroll;
   max-height: 47vh;
+}
+
+.flash .failure {
+  background-color: darkgrey;
+  color: red;
+  padding: 2vh;
+  font-weight: bold;
+  width: 70vw;
+  text-align: center;
+  margin: .5vh;
+}
+
+.flash .success {
+  background-color: darkgrey;
+  color: green;
+  padding: 2vh;
+  font-weight: bold;
+  width: 70vw;
+  text-align: center;
+  margin: .5vh;
+}
+
+.form-two-section {
+  overflow: hidden;
+}
+
+.form-two-section select {
+  display: inline;
+  float: right;
+  width: 50%;
 }

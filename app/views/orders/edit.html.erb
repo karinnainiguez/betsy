@@ -29,8 +29,9 @@
 
 
   <%= f.label :ccexpiration, "Credit Card Expiration" %>
-  <%= f.date_field :ccexpiration %>
-
+  <div .form-two-section>
+    <%= f.date_select :ccexpiration, order: [:month, :year], use_two_digit_numbers: true, default: {day: 1} %>
+  </div>
   <%= f.label :cvv, "CVV" %>
   <%= f.text_field :cvv %>
 

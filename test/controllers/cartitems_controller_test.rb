@@ -114,4 +114,18 @@ describe CartitemsController do
     end
 
   end
+
+  describe 'ship' do
+    it "responds with redirect if item exists" do
+      cartitem = Cartitem.create!(order: Order.first, product: Product.first, quantity: 3)
+      patch ship_path(cartitem)
+      must_respond_with :redirect
+    end
+
+    it "responds with not found if item doesnt exist" do
+      cartitem_id = Cartitem.last.id + 1
+      patch ship_path(cartitem_id)
+      must_respond_with :not_found
+    end
+  end
 end

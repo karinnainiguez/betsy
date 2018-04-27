@@ -4,11 +4,11 @@ describe ReviewsController do
 
 
   describe 'new' do
-      it 'responds with success' do
-        get new_product_review_path(Product.first)
-        must_respond_with :success
-      end
+    it 'responds with success' do
+      get new_product_review_path(Product.first)
+      must_respond_with :success
     end
+  end
 
   describe "create" do
     it "creates a review with valid data for a real product" do

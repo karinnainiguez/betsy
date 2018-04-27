@@ -16,7 +16,7 @@
       <% total_revenue = 0 %>
       <% total_orders = 0 %>
 
-      <% @orders.each do |cartitem| %>
+      <% @cartitems.each do |cartitem| %>
 
       <% if cartitem.order.state == 'pending' %>
       <tr>
@@ -57,7 +57,7 @@
       <% total_revenue = 0 %>
       <% total_orders = 0 %>
 
-      <% @orders.each do |cartitem| %>
+      <% @cartitems.each do |cartitem| %>
 
       <% if cartitem.order.state == 'paid' %>
       <tr>
@@ -99,7 +99,7 @@
       <% total_revenue = 0 %>
       <% total_orders = 0 %>
 
-      <% @orders.each do |cartitem| %>
+      <% @cartitems.each do |cartitem| %>
 
       <% if cartitem.order.state == 'complete' %>
       <tr>
@@ -139,7 +139,7 @@
       <% total_revenue = 0 %>
       <% total_orders = 0 %>
 
-      <% @orders.each do |cartitem| %>
+      <% @cartitems.each do |cartitem| %>
 
       <% if cartitem.order.state == 'cancelled' %>
       <tr>
@@ -178,7 +178,7 @@
       <% total_revenue = 0 %>
       <% total_orders = 0 %>
 
-      <% @orders.each do |cartitem| %>
+      <% @cartitems.each do |cartitem| %>
 
       <% if cartitem.order.state == 'complete' %>
       <tr>

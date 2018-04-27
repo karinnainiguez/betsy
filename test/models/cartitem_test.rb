@@ -107,4 +107,20 @@ describe Cartitem do
       cart_item.order.id.must_equal @order.id
     end
   end
+
+  describe "#mark_shipped" do
+    it "marks an item shipped and order as complete" do
+      order = Order.first
+      product = Product.first
+
+      cart_item = Cartitem.create!(order: order, product: product, quantity: 3)
+      cart_item.must_respond_to :mark_shipped
+      cart_item.shipped.must_be_nil
+
+      result = cart_item.mark_shipped
+      result.must_equal true
+
+      cart_item.order.state.must_equal 'complete'
+    end
+  end
 end

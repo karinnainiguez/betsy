@@ -33,17 +33,6 @@ describe UsersController do
 
     end
 
-    # NO LONGER USING NEW.  ONLY
-    # CREATING THROUGH GITHUB
-    #
-    # describe "new" do
-    #   it "sends success" do
-    #     get new_user_path
-    #     must_respond_with :success
-    #   end
-    #
-    # end
-
     describe "edit" do
       it "sends success if user exists" do
         get edit_user_path(User.first)
