@@ -77,8 +77,6 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
 
-  config.serve_static_assets = true
-  config.assets.compile = true
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')

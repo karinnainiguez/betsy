@@ -4,11 +4,9 @@
 <% @category.products.each do |product| %>
   <% if product.stock > 0 %>
   <div class="product-box">
-    <% if product.image.file? %>
+
     <%= image_tag product.image.url(:medium), :alt => "picture of product" %>
-    <% else %>
-    <%= image_tag "not_found.jpg", :alt => "picture of product" %>
-    <% end %>
+
 
     <strong><%= link_to(product.name, product_path(product)) %></strong>
     <li>
