@@ -4,7 +4,7 @@
 <% @category.products.each do |product| %>
   <% if product.stock > 0 %>
   <div class="product-box">
-    <%= image_tag product.image.url(:medium) %>
+    <%= image_tag product.image.url(:medium), :alt => "picture of product" %>
 
     <strong><%= link_to(product.name, product_path(product)) %></strong>
     <li>

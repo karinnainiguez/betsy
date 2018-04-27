@@ -5,7 +5,11 @@
     <ul>
       <div class="pic"></div>
       <li><%= link_to(user.name, user_path(user)) %></li>
-      <li class="pic"><%= image_tag user.image.url(:medium) %></li>
+      <% if user.image %>
+      <li class="pic"><%= image_tag user.image.url(:medium), :alt => "picture of product" %></li>
+      <% else %>
+      <%= image_tag "not_found.jpg", :alt => "picture of product" %>
+      <% end %>
       <li>Products Available: <%= user.products.count %></li>
       <li>Average Rating: <%= '%.2f' % average_rating(user) %></li>
     </ul>
