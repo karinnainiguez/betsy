@@ -72,9 +72,13 @@ class CartitemsController < ApplicationController
 
   def ship
     @cart_item.mark_shipped
-
-    flash[:success] = "Item marked as shipped"
-    redirect_to orders_path
+    if @cart_item.save
+      flash[:success] = "Item marked as shipped"
+      redirect_back fallback_location: root_path
+    else
+      flash[:failure] = "Something went wrong, we could not mark as shipped"
+      redirect_back fallback_location: root_path
+    end
   end
 
   private

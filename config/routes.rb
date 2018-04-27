@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get '/cartitems', to: 'cartitems#index', as: 'cart'
   delete '/cartitems/:id', to: 'cartitems#destroy', as: 'delete_cartitem'
   patch '/cartitems/:id', to: 'cartitems#update', as: 'update_cartitem'
-  patch '/cartitems/:id', to: 'cartitems#ship', as: 'ship'
+  patch '/cartitems/ship/:id', to: 'cartitems#ship', as: 'ship'
 
 
 end
