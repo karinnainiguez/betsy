@@ -29,10 +29,10 @@
   <div class="add category">
 
 
-    Select a category from the list
+    Select a category from the list (Or create new category in 'Account' page)
 
     <div>
-      <%= f.label :cateogories %>
+      <%= f.label :categories %>
       <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
       </div>
 
