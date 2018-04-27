@@ -9,6 +9,5 @@ module ApplicationHelper
     end.sum.to_f
 
     return total / reviews.count
-
   end
 end

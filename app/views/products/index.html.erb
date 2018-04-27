@@ -13,8 +13,12 @@
     <li>
       Price: <%= number_to_currency(product.price) %>
     </li>
-    <li>
-      Average Rating:<%= average_rating(product) %>
+    <li class = "rating">
+       <%average_rating(product).to_i.times do  %>
+           <span class="rating icon"></span>
+    
+           <%= image_tag("star-icon.png", :alt => "rating icon") %>
+         <% end %>
     </li>
   </div>
   <% end %>
