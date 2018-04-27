@@ -1,5 +1,5 @@
 class CartitemsController < ApplicationController
-    before_action :find_cartitem, only: [:update, :destroy]
+  before_action :find_cartitem, only: [:update, :destroy, :ship]
 
   def index
     if session[:order_id] == nil
@@ -15,7 +15,7 @@ class CartitemsController < ApplicationController
     #  get quantity from form
     if @cart_item
       @cart_item.quantity += params[:cartitem][:quantity].to_i
-      
+
     else
       @cart_item = Cartitem.new(cartitem_params)
       #  find the product from path
@@ -46,8 +46,10 @@ class CartitemsController < ApplicationController
 
   def update
     #update quantity of item
+    if params[:cartitem]
+      @cart_item.assign_attributes(cartitem_params)
+    end
 
-    @cart_item.assign_attributes(cartitem_params)
     if @cart_item.save
       redirect_to cart_path
     else
@@ -66,6 +68,13 @@ class CartitemsController < ApplicationController
       redirect_to cart_path
     end
 
+  end
+
+  def ship
+    @cart_item.mark_shipped
+
+    flash[:success] = "Item marked as shipped"
+    redirect_to orders_path
   end
 
   private
