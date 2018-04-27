@@ -122,12 +122,13 @@ article.tabs section h2
 
 .productshowbottombuttons{
   display: flex;
-
-  justify-content:center;
-
+  justify-content: flex-start;
+  margin: 0;
 }
 
-
+.productshowbottombuttons li {
+  margin: 0.5em;
+}
 
 #tab-block{
   display: grid;
