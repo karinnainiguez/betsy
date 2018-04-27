@@ -194,10 +194,8 @@ describe 'update' do
 
       # @product.retire
       post product_retire_path(@product)
-<<<<<<< HEAD
       must_respond_with :redirect
-=======
->>>>>>> 7131b9fbaf51bf626aa765e2dc3ae8e579c6c67c
+
 
       #fetch info from db for test
       @product.reload

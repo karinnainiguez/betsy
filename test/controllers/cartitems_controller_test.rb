@@ -23,11 +23,11 @@ describe CartitemsController do
   describe 'create' do
     #method was written and you're not using it anywhere
     #cartitems are entities that created by another action, create is not being used and shouldn't be in the code
-    describe 'it can create a valid cartitem' do
+    it 'it can create a valid cartitem' do
       # Arrange
 
-    a = Product.find_by(name: 'chew toy')
-id = a.id
+      a = Product.find_by(name: 'chew toy')
+      id = a.id
       cartitem_data = {
         quantity: 1,
         product_id: id,
@@ -40,7 +40,7 @@ id = a.id
 
 
       # Act
-    post product_cartitems_path(id), params: { cartitem: cartitem_data }
+      post product_cartitems_path(id), params: { cartitem: cartitem_data }
       #
       # # Assert
       # must_respond_with :redirect
@@ -50,6 +50,7 @@ id = a.id
       # Book.last.title.must_equal book_data[:title]
     end
 
+  end
 
   describe 'delete' do
 
@@ -75,7 +76,7 @@ id = a.id
 
       Cartitem.count.must_equal old_count - 1
     end
-
+    
 
     # old_count = Cartitem.count
     #
@@ -90,25 +91,10 @@ id = a.id
     #       Cartitems.count.must_equal old_count - 1
 
 
-    describe 'delete' do
-      puts Cartitem.first
-      # old_count = Cartitem.count
-      #
-      # id = Cartitem.first.id
-      #
-      #
-      # delete delete_cartitem_path(id)
-      #
-      # must_respond_with :redirect
-      #       must_redirect_to cartitems_path
-      #
-      #       Cartitems.count.must_equal old_count - 1
-
-    end
   end
 
 end
 
-  #delete - destroy
-  #update - patch
-  #quantity
+#delete - destroy
+#update - patch
+#quantity
