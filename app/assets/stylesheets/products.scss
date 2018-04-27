@@ -27,7 +27,7 @@ li {
 
   article.tabs
   {
-  	position:fixed;
+  	position: fixed;
   	display: block;
   	width: 80%;
   	height: 400px;
@@ -122,18 +122,18 @@ article.tabs section h2
 
 .productshowbottombuttons{
   display: flex;
-
-  justify-content:center;
-
+  justify-content: flex-start;
+  margin: 0;
 }
 
-
+.productshowbottombuttons li {
+  margin: 0.5em;
+}
 
 #tab-block{
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 2fr;
-  box-sizing:content-box;
 
 }
 

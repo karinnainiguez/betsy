@@ -2,11 +2,11 @@
 
 <ul class="product-container">
 <% @categories.each do |cat| %>
+<% if cat.products.count > 0 %>
   <section class="category product-box">
-  <li>
     <strong><%= link_to(cat.name, category_path(cat)) %></strong>
     <p><%= cat.products.count %> Products</p>
-  </li>
 </section>
+<% end %>
 <% end %>
 </ul>

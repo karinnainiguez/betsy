@@ -13,14 +13,16 @@ class Cartitem < ApplicationRecord
     self.product.save
   end
 
-  def stat(status)
-    items = []
-    self.each do |item|
-      if item.order.state == 'status'
-        items << item
-      end
+  def mark_shipped
+    self.shipped = DateTime.now
+    self.save
+
+    self.order.cartitems.each do |item|
+      return if !item.shipped
     end
-    return items
+
+    self.order.state = "complete"
+    self.order.save
   end
 
 end

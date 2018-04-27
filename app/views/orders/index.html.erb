@@ -71,7 +71,7 @@
           <%= number_to_currency(cartitem.quantity * cartitem.product.price) %>
         </td>
         <td>
-          <%= link_to "Mark as Shipped", update_cartitem_path(cartitem), method: :patch, class: "button" %>
+          <%= link_to "Mark as Shipped", ship_path(cartitem), method: :patch, class: "button" %>
         </td>
 
         <% total_revenue += cartitem.quantity * cartitem.product.price %>

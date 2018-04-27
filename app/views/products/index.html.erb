@@ -1,7 +1,4 @@
 
-
-<h2 class = "browser-header"><%= link_to("Add a New Product", new_product_path, class: "important") %></h2>
-
 <section class="product-container">
   <% @products.each do |product| %>
   <% if product.stock > 0 %>
