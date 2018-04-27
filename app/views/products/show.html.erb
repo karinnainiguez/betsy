@@ -13,7 +13,7 @@
       <li id = "tab-block-item">
         <h2><a href="#tab1">Product Info</a></h2>
         <h4> <%= @product.name %> Summary</h4>
-        <p>Sold by: <%= link_to @product.user.name, user_path(@product.user)%></p>
+        <p>Average Rating: <%= average_rating(@product) %> | Sold by: <%= link_to @product.user.name, user_path(@product.user)%></p>
         <p>Price: <%= number_to_currency(@product.price) %></p>
         <p>Stock: <%= @product.stock %></p>
 
@@ -52,10 +52,10 @@
     <h4>Product Reviews</h4>
     <table>
       <tr>
-        <th><strong>User</strong></th>
-        <th><strong>Date</strong></th>
-        <th><strong>Rating</strong></th>
-        <th><strong>Review</strong></th>
+        <td><strong>User</strong></td>
+        <td><strong>Date</strong></td>
+        <td><strong>Rating</strong></td>
+        <td><strong>Review</strong></td>
       </tr>
 
       <% @product.reviews.each do |review| %>
