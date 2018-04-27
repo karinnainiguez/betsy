@@ -18,7 +18,7 @@
   <section id="tab1 tab-block">
     <ul id = "tab-block">
       <li id = "tab-block-item">
-        <% if @product.image %>
+        <% if @product.image.file? %>
         <%= image_tag @product.image.url(:large), :alt => "picture of product" %>
         <% else %>
         <%= image_tag "not_found.jpg", :alt => "picture of product" %>

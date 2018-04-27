@@ -6,10 +6,10 @@
 <span class="button hollow"><%= link_to "Order Fufillment", orders_path %></span>
 <% end %>
 
-<% if @user.image %>
-<%= image_tag @user.image.url(:medium), :alt => "picture of product" %>
+<% if @user.image.file? %>
+<%= image_tag @user.image.url(:medium), :alt => "picture of seller" %>
 <% else %>
-<%= image_tag "not_found.jpg", :alt => "picture of product" %>
+<%= image_tag "not_found.jpg", :alt => "picture of seller" %>
 <% end %>
 
 <h4><u>Merchant Info</u></h4>
@@ -40,7 +40,7 @@
       <ul class="product-type">
         <div>
         <% collection.each do |product| %>
-        <% if product.image %>
+        <% if product.image.file? %>
         <%= image_tag product.image.url(:thumb), :alt => "picture of product" %>
         <% else %>
         <%= image_tag "not_found.jpg", :alt => "picture of product" %>
