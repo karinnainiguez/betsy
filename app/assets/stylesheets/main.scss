@@ -48,9 +48,13 @@ audio {
   justify-content: center;
 }
 
-.home-container {
+#home-container {
     border: black solid 7px;
-    position: center;
+    text-align: center;
+    padding: 1.5em;
+    max-width: 500px;
+    // position: fixed;
+    margin: auto;
 }
 
 .sign {
@@ -67,10 +71,6 @@ section {
   grid-template-rows: auto auto;
   justify-content: center;
   background-color: white;
-  padding: 1.5em;
-  max-width: 500;
-  position:fixed;
-  
 }
 
 body {
