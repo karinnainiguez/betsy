@@ -13,14 +13,14 @@ class Cartitem < ApplicationRecord
     self.product.save
   end
 
-  def stat(status)
-    items = []
-    self.each do |item|
-      if item.order.state == 'status'
-        items << item
-      end
-    end
-    return items
-  end
+  # def stat(status)
+  #   items = []
+  #   self.each do |item|
+  #     if item.order.state == 'status'
+  #       items << item
+  #     end
+  #   end
+  #   return items
+  # end
 
 end
