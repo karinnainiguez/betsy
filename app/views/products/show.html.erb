@@ -1,12 +1,22 @@
 <h2>Details for <%= @product.name %></h2>
 
 
+        <ul class = "productshowbottombuttons">
+          <% if session[:user_id] == @product.user_id %>
+          <li class = "button hollow">
+            <%= link_to "Edit", edit_product_path(@product) %>
+          </li>
+          <li class = "button hollow">
+            <%= link_to("Discontinue", product_retire_path(@product), method: :post, data: { confirm: "Are you sure you want to discontinue Product #{ @product.name }?" }) %>
+          </li>
+            <% end %>
+        </ul>
+
+
 <article class="tabs">
 
   <section id="tab1 tab-block">
-
     <ul id = "tab-block">
-
       <li id = "tab-block-item">
         <%= image_tag @product.image.url(:large) %>
       </li>
@@ -16,9 +26,10 @@
         <p>Average Rating: <%= average_rating(@product) %> | Sold by: <%= link_to @product.user.name, user_path(@product.user)%></p>
         <p>Price: <%= number_to_currency(@product.price) %></p>
         <p>Stock: <%= @product.stock %></p>
-
+        <p>Description: <%= @product.description %>
+        <p>Categories:</p>
         <ul class = "categoryproductpage">
-          Categories:
+
           <% @product.categories.each do |category| %>
           <li>
             <%= link_to category.name.capitalize, category_path(category.id) %>
@@ -29,19 +40,7 @@
         <%= form_for @cart_item , url: product_cartitems_path(@product.id) do |f| %>
         <%= f.label :quantity %>
         <%= f.select :quantity, options_for_select(1..@product.stock) %>
-        <%= f.submit "Add to cart" %>
-        <% end %>
-
-
-        <ul class = "productshowbottombuttons">
-          <% if session[:user_id] == @product.user_id %>
-          <li class = "button hollow">
-            <%= link_to "Edit", edit_product_path(@product) %>
-          </li>
-          <li class = "button hollow">
-            <%= link_to("Discontinue", product_retire_path(@product), method: :post, data: { confirm: "Are you sure you want to discontinue Product #{ @product.name }?" }) %>
-          </li>
-        </ul>
+        <%= f.submit "Add to cart", class: "button"%>
         <% end %>
       </li>
     </ul>
