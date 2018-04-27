@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :categories, join_table: :products_categories
+  has_and_belongs_to_many :categories, join_table: :products_categories, :default_url => ":style/not_found.jpg"
   has_many :reviews
   has_attached_file :image, styles: { large: "350x350>", medium: "200x200#", thumb: "150x150#" }
 
