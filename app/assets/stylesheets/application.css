@@ -26,6 +26,9 @@ main {
   margin: 20vh 5vw;
 }
 
+h2 {
+  text-align: center;
+}
 .top-bar, footer{
   background-color: white;
   color: lightgrey;

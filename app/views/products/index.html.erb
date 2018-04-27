@@ -1,6 +1,6 @@
 
 
-<h2 class = "browser-header"><%= link_to("Add a New Product", new_product_path, class: "important") %></h2>
+<h2> Shop by Product </h2>
 
 <section class="product-container">
   <% @products.each do |product| %>
@@ -13,7 +13,7 @@
     <li>
       Price: <%= number_to_currency(product.price) %>
     </li>
-    <li class = "rating">
+    <li>
        Average Rating: <%= '%.2f' % average_rating(product) %>
     </li>
   </div>
