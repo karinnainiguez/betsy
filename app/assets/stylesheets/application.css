@@ -81,7 +81,7 @@ footer {
 .product-box {
   width: 200px;
   height: 300px;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   margin: 0 0 1em 1em;
   // display: flex;
   // width: 100%;
@@ -94,4 +94,10 @@ footer {
 
 pic {
   text-align: center;
+}
+
+
+#tab-block-item {
+  overflow-y: scroll;
+  max-height: 47vh;
 }
