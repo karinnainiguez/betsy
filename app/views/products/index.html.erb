@@ -1,4 +1,7 @@
 
+
+<h2 class = "browser-header"><%= link_to("Add a New Product", new_product_path, class: "important") %></h2>
+
 <section class="product-container">
   <% @products.each do |product| %>
   <% if product.stock > 0 %>
@@ -13,8 +16,8 @@
     <li class = "rating">
        <%average_rating(product).to_i.times do  %>
            <span class="rating icon"></span>
-    
-           <%= image_tag("star-icon.png", :alt => "rating icon") %>
+           <%icon = rating_icon(product.categories) %>
+           <%= image_tag(icon, :alt => "rating icon") %>
          <% end %>
     </li>
   </div>

@@ -3,51 +3,37 @@ module ProductsHelper
   def rating_icon(categories)
     categories.each do |category|
       if category == 'horse'
-        icon = "horse-icon.png"
-        break
+        return "horse-icon.png"
       elsif category == 'dog'
-        icon = "dog-icon.png"
-        break
+        return "dog-icon.png"
       elsif category == 'cat'
-        icon = "cat-icon.png"
-        break
+        return "cat-icon.png"
       elsif category == 'unicorn'
-        icon = "unicorn-icon.jpeg"
-        break
+        return "unicorn-icon.jpeg"
       elsif category == 'hedgehog'
-        icon = "hedge-icon.png"
-        break
+        return "hedge-icon.png"
       elsif category == 'chicken'
-        icon = "chicken-icon.jpeg"
-        break
+        return "chicken-icon.jpeg"
       elsif category == 'panda'
-        icon = "panda-icon.png"
-        break
+        return "panda-icon.png"
       elsif category =='narwhal'
-        icon = "narwhal-icon.png"
-        break
+        return "narwhal-icon.png"
       elsif category == 'fish'
-        icon = "fish-icon.png"
-        break
+        return "fish-icon.png"
       elsif category == 'ferret'
-        icon = "ferret-icon.jpeg"
-        break
+        return "ferret-icon.jpeg"
       elsif category == 'hamster'
-        icon = "hamster-icon.png"
-        break
+        return "hamster-icon.png"
       elsif category == 'chinchilla'
-        icon = "chinchilla-icon.png"
-        break
+        return "chinchilla-icon.png"
       elsif category == 'turtle'
-        icon = "turtle-icon.png"
-        break
+        return "turtle-icon.png"
       elsif category =='pony'
-        icon = "pony-icon.jpeg"
-        break
+        return "pony-icon.jpeg"
       else
         icon = "star-icon.png"
       end
-      return icon
     end
+    return 'star-icon.png'
   end
 end
