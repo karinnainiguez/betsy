@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
   def create
     auth_hash = request.env['omniauth.auth']
 
-    if session[:user_id] != nil
-      flash[:failure] = "Could not log in, an user is already logged in"
+    if find_user != nil
+      flash[:failure] = "Could not log in, a user is already logged in"
       redirect_to root_path
 
     elsif auth_hash['uid']
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
           if @user.save
             session[:user_id] = @user.id
-            flash[:success] = "Logged in!"
+            flash[:success] = "#{@user.name} created and logged in.  Welcome!"
             redirect_to root_path
           else
             flash[:failure] = "Could not log in, user could not be created"
@@ -36,14 +36,14 @@ class SessionsController < ApplicationController
         end
 
       else
-        flash[:error] = "You could not login"
+        flash[:error] = "You could not login, we're sorry!"
         redirect_to root_path
       end
     end
 
     def destroy
       session.delete(:user_id)
-      flash[:success] = "Logged out successfully"
+      flash[:success] = "Logged out successfully.  Come back soon!"
       redirect_to root_path
     end
 

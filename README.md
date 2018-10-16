@@ -1,7 +1,7 @@
 # bEtsy
-[Much like other e-commerce platforms](https://www.etsy.com/), your team will make an online store where a wide variety of products can be listed and sold by any user. This project focuses on reinforcing the major components of Rails, model validations, testing, and more complex logic such as user authentication.
+[Much like other e-commerce platforms](https://www.etsy.com/), our team of four created an online store where a wide variety of products can be listed and sold by any user. This project focused on reinforcing the major components of Rails, model validations, testing, and more complex logic such as user authentication.
 
-This is a [Stage 3](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) project requiring you to expand upon what you have learned in class.
+This was a [Stage 3](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) project requiring us to expand upon what we learned in class at [Ada Developers Academy](https://www.adadevelopersacademy.org/).
 
 ## Project Learning Goals
 - Core comprehension of:
@@ -43,8 +43,10 @@ Build an online system for listing, selling, reviewing, and buying a wide variet
 - Unit tests and/or specs for
   - Models
   - Controllers
-- Test code coverage (using SimpleCov - remember me!)
-  - 90% for all controller and model classes
+- Test code coverage (using SimpleCov)
+  - 93.75% Test Coverage
+
+![coverage report](app/assets/images/SimpleCovCoverage.png)
 
 ### User Stories
 #### Guest User (Unauthenticated)
