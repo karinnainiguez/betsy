@@ -52,17 +52,17 @@ Build an online system for listing, selling, reviewing, and buying a wide variet
 #### Guest User (Unauthenticated)
 As a guest to the website (not signed in) I **can**:
 
-- Browse all products :heavy_check_mark:
-- Browse products by category :heavy_check_mark:
-- Browse products by merchant (users) :heavy_check_mark:
-- View any individual product with additional details :heavy_check_mark:
-- Leave a review for a product providing: :heavy_check_mark:
+- Browse all products :white_check_mark:
+- Browse products by category :white_check_mark:
+- Browse products by merchant (users) :white_check_mark:
+- View any individual product with additional details :white_check_mark:
+- Leave a review for a product providing: :white_check_mark:
     - A text review
     - A rating out of 5
-- Add in-stock products to my cart :heavy_check_mark:
-- Remove products from my cart :heavy_check_mark:
-- Change the quantity of an existing product in my cart :heavy_check_mark:
-- Purchase the items in my cart, providing: :heavy_check_mark:
+- Add in-stock products to my cart :white_check_mark:
+- Remove products from my cart :white_check_mark:
+- Change the quantity of an existing product in my cart :white_check_mark:
+- Purchase the items in my cart, providing: :white_check_mark:
     - Email Address
     - Mailing Address
     - Name on credit card
@@ -70,43 +70,43 @@ As a guest to the website (not signed in) I **can**:
     - Credit cart expiration
     - Credit Card CVV (security code)
     - Billing zip code
-- Purchasing an order makes the following changes: :heavy_check_mark:
+- Purchasing an order makes the following changes: :white_check_mark:
     - Reduces the number of inventory for each product
     - Changes the order state from "pending" to "paid"
     - Clears the current cart
-- After purchasing an order, I can view a confirmation screen including: :heavy_check_mark:
+- After purchasing an order, I can view a confirmation screen including: :white_check_mark:
     - Each item in the order with a quantity and line-item subtotal
     - A link to the item description page
     - Order total price
     - Date/time the order was placed
     - The current status of the order
-- Sign up to be a merchant using OAuth :heavy_check_mark:
+- Sign up to be a merchant using OAuth :white_check_mark:
     - Every merchant must have a username
-- Sign in to my merchant account using OAuth :heavy_check_mark:
+- Sign in to my merchant account using OAuth :white_check_mark:
 
 As a guest I **cannot**:
 
-- Add products to the cart that are out of stock :heavy_check_mark:
-- View any link or page to manage any products :heavy_check_mark:
-- View any of the account pages :heavy_check_mark:
+- Add products to the cart that are out of stock :white_check_mark:
+- View any link or page to manage any products :white_check_mark:
+- View any of the account pages :white_check_mark:
 
 #### Authenticated Users
 As a signed-in user, I **can**:
 
-- Do everything a guest user can do except for sign up and sign in :heavy_check_mark:
-- Sign out :heavy_check_mark:
-- Create new categories (categories are shared between all merchants) :heavy_check_mark:
-- Create a new product providing: :heavy_check_mark:
+- Do everything a guest user can do except for sign up and sign in :white_check_mark:
+- Sign out :white_check_mark:
+- Create new categories (categories are shared between all merchants) :white_check_mark:
+- Create a new product providing: :white_check_mark:
     - name
     - description
     - price
     - photo URL
     - stock
-- Assign my products to any number of categories :heavy_check_mark:
-- Retire a product from being sold, which hides it from browsing :heavy_check_mark:
-- View an account page to edit/update my existing products :heavy_check_mark:
-- View an account page showing my order fulfillment :heavy_check_mark:
-- On the order fulfillment page: :heavy_check_mark:
+- Assign my products to any number of categories :white_check_mark:
+- Retire a product from being sold, which hides it from browsing :white_check_mark:
+- View an account page to edit/update my existing products :white_check_mark:
+- View an account page showing my order fulfillment :white_check_mark:
+- On the order fulfillment page: :white_check_mark:
     - Total Revenue
     - Total Revenue by status
     - Total number of orders by status
@@ -118,7 +118,7 @@ As a signed-in user, I **can**:
         - DateTime the order was placed
         - Link to transition the order item to marked as shipped
         - The current status of the order ("pending", "paid", "complete", "cancelled")
-- View an individual order to see the user's: :heavy_check_mark:
+- View an individual order to see the user's: :white_check_mark:
     - Name
     - Email address
     - Mailing address
@@ -127,9 +127,9 @@ As a signed-in user, I **can**:
 
 As a signed-in user, I **cannot**:
 
-- Review my own products :heavy_check_mark:
-- View order items from a shared order that belong to another merchant :heavy_check_mark:
-- View another user's private data (i.e. order fulfillment or product management) :heavy_check_mark:
+- Review my own products :white_check_mark:
+- View order items from a shared order that belong to another merchant :white_check_mark:
+- View another user's private data (i.e. order fulfillment or product management) :white_check_mark:
 
 ### Validations
 Many of our models will have attributes that are required for our application to use and display data consistently. Each model will have attributes with requirements for a valid record. The requirements are summarized below:
